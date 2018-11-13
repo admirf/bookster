@@ -11,23 +11,26 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
 
     public function setPasswordAttribute($value)
     {

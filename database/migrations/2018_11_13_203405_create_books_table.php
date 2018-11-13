@@ -18,12 +18,15 @@ class CreateBooksTable extends Migration
             $table->unsignedInteger('user_id')->index();
             $table->unsignedInteger('category_id')->index();
             $table->unsignedInteger('price');
+            $table->boolean('available')->default(true);
             $table->string('title');
+            $table->string('author');
             $table->text('description')->nullable();
             $table->string('isbn')->nullable();
             $table->string('edition')->nullable();
             $table->unsignedInteger('num_of_pages')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
