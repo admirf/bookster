@@ -2,12 +2,16 @@
 
 namespace App;
 
+use ScoutElastic\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use App\Configuration\BookIndexConfigurator;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Book extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Searchable;
+
+    protected $indexConfigurator = BookIndexConfigurator::class;
 
     protected $fillable = [
         'category_id',

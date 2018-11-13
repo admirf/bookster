@@ -32,6 +32,7 @@ Route::namespace('Api')->group(function () {
     Route::delete('/categories/{category}', 'CategoryController@destroy')->middleware(['auth:api']);
 
     Route::get('/books', 'BookController@index');
+    Route::get('/search', 'BookSearchController');
     Route::get('/books/{book}', 'BookController@show');
     Route::post('/books', 'BookController@store')->middleware(['auth:api']);
     Route::put('/books/{book}', 'BookController@update')->middleware(['auth:api']);
