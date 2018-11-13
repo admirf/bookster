@@ -23,6 +23,7 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/users', 'UserController@index');
     Route::get('/users/{user}', 'UserController@show');
+    Route::get('/users/{user}/books', 'UserBookController');
 
     Route::get('/categories', 'CategoryController@index');
     Route::get('/categories/{category}', 'CategoryController@show');

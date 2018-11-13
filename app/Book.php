@@ -10,6 +10,7 @@ class Book extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'category_id',
         'title',
         'author',
         'language',

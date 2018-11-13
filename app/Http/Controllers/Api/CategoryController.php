@@ -28,7 +28,9 @@ class CategoryController extends Controller
 
         $category = Category::create($attributes);
 
-        return new CategoryResource($category);
+        return (new CategoryResource($category))
+            ->response()
+            ->setStatusCode(201);
     }
 
     public function update(Request $request, Category $category)
