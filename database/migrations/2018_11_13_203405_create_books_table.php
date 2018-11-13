@@ -21,6 +21,7 @@ class CreateBooksTable extends Migration
             $table->boolean('available')->default(true);
             $table->string('title');
             $table->string('author');
+            $table->string('language');
             $table->text('description')->nullable();
             $table->string('isbn')->nullable();
             $table->string('edition')->nullable();

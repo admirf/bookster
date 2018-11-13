@@ -21,11 +21,14 @@ class BookResource extends JsonResource
             'author' => $this->author,
             'price' => (double) $this->price,
             'edition' => $this->edition,
+            'language' => $this->language,
             'description' => $this->description,
             'isbn' => $this->isbn,
             'available' => (bool) $this->available,
             'user' => new UserResource($this->whenLoaded('user')),
-            'category' => new CategoryResource($this->whenLoaded('category'))
+            'category' => new CategoryResource($this->whenLoaded('category')),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }

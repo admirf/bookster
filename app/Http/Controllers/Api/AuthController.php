@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\User;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
@@ -24,6 +25,12 @@ class AuthController extends Controller
         ], 201);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws AuthenticationException
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function login(Request $request)
     {
         $credentials = $this->validate($request, [
@@ -32,7 +39,7 @@ class AuthController extends Controller
         ]);
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            throw new AuthenticationException();
         }
 
         return $this->respondWithToken($token);
