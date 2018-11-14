@@ -27,14 +27,14 @@ Route::namespace('Api')->group(function () {
 
     Route::get('/categories', 'CategoryController@index');
     Route::get('/categories/{category}', 'CategoryController@show');
-    Route::post('/categories', 'CategoryController@store')->middleware(['auth:api']);
-    Route::put('/categories/{category}', 'CategoryController@update')->middleware(['auth:api']);
-    Route::delete('/categories/{category}', 'CategoryController@destroy')->middleware(['auth:api']);
+    Route::post('/categories', 'CategoryController@store')->middleware(['auth:api', 'permission:create categories']);
+    Route::put('/categories/{category}', 'CategoryController@update')->middleware(['auth:api', 'permission:edit categories']);
+    Route::delete('/categories/{category}', 'CategoryController@destroy')->middleware(['auth:api', 'permission:delete categories']);
 
     Route::get('/books', 'BookController@index');
     Route::get('/search', 'BookSearchController');
     Route::get('/books/{book}', 'BookController@show');
-    Route::post('/books', 'BookController@store')->middleware(['auth:api']);
-    Route::put('/books/{book}', 'BookController@update')->middleware(['auth:api']);
-    Route::delete('/books/{book}', 'BookController@destroy')->middleware(['auth:api']);
+    Route::post('/books', 'BookController@store')->middleware(['auth:api', 'permission:create books']);
+    Route::put('/books/{book}', 'BookController@update')->middleware(['auth:api', 'permission:edit books']);
+    Route::delete('/books/{book}', 'BookController@destroy')->middleware(['auth:api', 'permission:delete books']);
 });

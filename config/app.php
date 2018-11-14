@@ -238,6 +238,7 @@ return [
         Illuminate\Database\Eloquent\ModelNotFoundException::class => 404,
         Illuminate\Auth\AuthenticationException::class => 401,
         Illuminate\Auth\Access\AuthorizationException::class => 403,
+        Spatie\Permission\Exceptions\UnauthorizedException::class => 403,
         Illuminate\Validation\ValidationException::class => 422
     ]
 

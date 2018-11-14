@@ -8,7 +8,6 @@
 
 namespace App\Exceptions;
 
-
 use Illuminate\Validation\ValidationException;
 
 trait JSON
