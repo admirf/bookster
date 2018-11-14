@@ -48,6 +48,8 @@ class BookController extends Controller
 
     public function update(Request $request, Book $book)
     {
+        $this->authorize('owns', $book);
+
         $attributes = $this->validate($request, [
             'category_id' => 'sometimes|integer|exists:categories,id',
             'price' => 'sometimes|integer',
@@ -72,6 +74,8 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
+        $this->authorize('owns', $book);
+
         $book->delete();
 
         return response('', 204);
