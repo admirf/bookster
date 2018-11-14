@@ -224,4 +224,21 @@ return [
 
     ],
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Exception Status Codes
+    |--------------------------------------------------------------------------
+    |
+    | This array maps Exceptions and corresponding status codes
+    |
+    */
+
+    'codes' => [
+        Illuminate\Database\Eloquent\ModelNotFoundException::class => 404,
+        Illuminate\Auth\AuthenticationException::class => 401,
+        Illuminate\Auth\Access\AuthorizationException::class => 403,
+        Illuminate\Validation\ValidationException::class => 422
+    ]
+
 ];
