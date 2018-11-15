@@ -18,6 +18,7 @@ class BookSearchController extends Controller
         ]);
 
         $results = Book::search($query['q']);
+
         $results = isset($query['price_lte']) ? $results->whereBetween('price', [
                 $query['price_gte'],
                 $query['price_lte']

@@ -37,4 +37,6 @@ Route::namespace('Api')->group(function () {
     Route::post('/books', 'BookController@store')->middleware(['auth:api', 'permission:create books']);
     Route::put('/books/{book}', 'BookController@update')->middleware(['auth:api', 'permission:edit books']);
     Route::delete('/books/{book}', 'BookController@destroy')->middleware(['auth:api', 'permission:delete books']);
+    Route::get('/books/{book}/media', 'BookMediaController@index');
+    Route::post('/books/{book}/media', 'BookMediaController@upload')->middleware(['auth:api', 'permission:edit books']);
 });

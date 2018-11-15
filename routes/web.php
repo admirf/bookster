@@ -12,7 +12,7 @@
 */
 
 Route::namespace('Web')->group(function () {
-    Route::get('/{any}', 'IndexController')->where('any', '.*');
+    Route::get('/', 'IndexController');
 });
 
 

@@ -3,13 +3,19 @@
 namespace App;
 
 use ScoutElastic\Searchable;
+use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use App\Configuration\BookIndexConfigurator;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Book extends Model
+
+class Book extends Model implements HasMedia
 {
-    use SoftDeletes, Searchable;
+    use SoftDeletes,
+        Searchable,
+        HasMediaTrait;
 
     protected $indexConfigurator = BookIndexConfigurator::class;
 
@@ -40,5 +46,22 @@ class Book extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('images');
+    }
+
+    /**
+     * @param Media|null $media
+     * @throws \Spatie\Image\Exceptions\InvalidManipulation
+     */
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+            ->width(368)
+            ->height(232)
+            ->sharpen(10);
     }
 }

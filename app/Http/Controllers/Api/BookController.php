@@ -12,9 +12,9 @@ class BookController extends Controller
     public function index()
     {
         return BookResource::collection(
-            Book::all()
-                ->load('user')
-                ->load('category')
+            Book::with('user')
+                ->with('category')
+                ->paginate(20)
         );
     }
 
@@ -60,7 +60,6 @@ class BookController extends Controller
             'edition' => 'sometimes|string',
             'num_of_pages' => 'sometimes|integer',
             'language' => 'sometiems|string'
-
         ]);
 
         $book->fill($attributes)->save();
