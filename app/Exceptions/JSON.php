@@ -25,6 +25,7 @@ trait JSON
         return response()->json([
             'message' => $exception->getMessage(),
             'errors' => $exception instanceof ValidationException ? $exception->errors(): 'unknown',
+            'class' => env('APP_DEBUG') ? get_class($exception): 'disabled',
             'trace' => env('APP_DEBUG') ? $exception->getTrace(): 'disabled'
         ], $status);
     }

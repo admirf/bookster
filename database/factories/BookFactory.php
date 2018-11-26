@@ -6,7 +6,7 @@ $factory->define(App\Book::class, function(Faker $faker) {
     return [
         'user_id' => App\User::inRandomOrder()->first()->id,
         'category_id' => App\Category::inRandomOrder()->first()->id,
-        'title' => $faker->title,
+        'title' => $faker->monthName,
         'author' => $faker->name,
         'language' => $faker->languageCode,
         'price' => $faker->numberBetween(0, 100),
