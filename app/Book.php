@@ -48,9 +48,9 @@ class Book extends Model implements HasMedia
         return $this->belongsTo(Category::class);
     }
 
-    public function registerMediaCollections()
+    public function transactions()
     {
-        $this->addMediaCollection('images');
+        return $this->hasMany(Transaction::class);
     }
 
     /**

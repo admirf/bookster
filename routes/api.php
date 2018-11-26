@@ -39,4 +39,8 @@ Route::namespace('Api')->group(function () {
     Route::delete('/books/{book}', 'BookController@destroy')->middleware(['auth:api', 'permission:delete books']);
     Route::get('/books/{book}/media', 'BookMediaController@index');
     Route::post('/books/{book}/media', 'BookMediaController@upload')->middleware(['auth:api', 'permission:edit books']);
+
+    Route::get('/transactions', 'TransactionController@index')->middleware(['auth:api', 'permission:view transactions']);
+    Route::get('/transactions/{transaction}', 'TransactionController@show')->middleware(['auth:api', 'permission:view transactions']);
+    Route::get('/transactions/{transaction}/complete', 'TransactionController@complete')->middleware(['auth:api', 'permission:complete transactions']);
 });

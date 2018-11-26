@@ -11,7 +11,7 @@ class BookMediaController extends Controller
 {
     public function index(Book $book)
     {
-        return MediaResource::collection($book->getMedia('images'));
+        return MediaResource::collection($book->getMedia());
     }
 
     /**
@@ -30,6 +30,6 @@ class BookMediaController extends Controller
 
         $book
             ->addMedia($request->file('image'))
-            ->toMediaCollection('images');
+            ->toMediaCollection();
     }
 }

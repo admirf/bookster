@@ -18,6 +18,7 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'balance'
     ];
 
     protected $hidden = [
@@ -33,6 +34,11 @@ class User extends Authenticatable implements JWTSubject
     public function books()
     {
         return $this->hasMany(Book::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'buyer_id');
     }
 
     public function setPasswordAttribute($value)

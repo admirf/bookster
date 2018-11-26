@@ -29,6 +29,7 @@ class BookSearchController extends Controller
             $results
                 ->get()
                 ->load('user')
+                ->load('media')
                 ->load('category')
         );
     }

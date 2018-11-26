@@ -13,6 +13,7 @@ class BookController extends Controller
     {
         return BookResource::collection(
             Book::with('user')
+                ->with('media')
                 ->with('category')
                 ->paginate(20)
         );
@@ -23,6 +24,7 @@ class BookController extends Controller
         return new BookResource(
             $book
                 ->load('user')
+                ->load('media')
                 ->load('category')
         );
     }
@@ -67,6 +69,7 @@ class BookController extends Controller
         return new BookResource(
             $book
                 ->load('user')
+                ->load('media')
                 ->load('category')
         );
     }
