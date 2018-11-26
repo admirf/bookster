@@ -1,19 +1,19 @@
 <template>
     <div class="aside">
-        <h3>Categories</h3>
+        Filters
     </div>
 </template>
 
 <script>
     export default {
-        name: "Categories"
+        name: "FilterTable"
     }
 </script>
 
 <style scoped>
     .aside {
         height: 600px;
-        background-color: #011e4f;
+        background-color: #409EFF;
         color: #e5eefc;
         border-radius: 4px;
         padding: 20px;

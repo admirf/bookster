@@ -47958,6 +47958,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "navbar",
@@ -47970,9 +47971,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         handleSelect: function handleSelect(key, keyPath) {
             console.log(key, keyPath);
-        },
-        openLogin: function openLogin() {
-            console.log('clicked');
         }
     }
 });
@@ -48014,12 +48012,14 @@ var render = function() {
           _vm._v(" "),
           _c(
             "el-menu-item",
-            {
-              staticClass: "right",
-              attrs: { index: "#", route: "#" },
-              on: { click: _vm.openLogin }
-            },
+            { staticClass: "right", attrs: { index: "/login" } },
             [_vm._v("Login")]
+          ),
+          _vm._v(" "),
+          _c(
+            "el-menu-item",
+            { staticClass: "right", attrs: { index: "/register" } },
+            [_vm._v("Register")]
           )
         ],
         1

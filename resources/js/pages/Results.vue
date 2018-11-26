@@ -1,7 +1,7 @@
 <template>
     <el-container>
         <el-aside class="aside">
-            <Categories></Categories>
+            <FilterTable></FilterTable>
         </el-aside>
         <el-main>
             <SearchBox></SearchBox>
@@ -11,14 +11,14 @@
 </template>
 
 <script>
-    import Categories from '../components/Categories'
+    import FilterTable from '../components/FilterTable'
     import BookList from '../components/BookList'
     import SearchBox from '../components/SearchBox'
 
     export default {
         name: "Results",
         components: {
-            Categories,
+            FilterTable,
             BookList,
             SearchBox
         }

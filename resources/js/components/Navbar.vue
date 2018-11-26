@@ -10,7 +10,8 @@
             <el-menu-item index="/">Home</el-menu-item>
             <el-menu-item index="/results">Search</el-menu-item>
             <el-menu-item index="/basket">My Basket</el-menu-item>
-            <el-menu-item index="#" route="#" class="right" @click="openLogin">Login</el-menu-item>
+            <el-menu-item index="/login" class="right">Login</el-menu-item>
+            <el-menu-item index="/register" class="right">Register</el-menu-item>
         </el-menu>
     </div>
 </template>
@@ -26,9 +27,6 @@
         methods: {
             handleSelect(key, keyPath) {
                 console.log(key, keyPath)
-            },
-            openLogin() {
-                console.log('clicked')
             }
         }
     }

@@ -14,6 +14,8 @@ class BookResource extends JsonResource
      */
     public function toArray($request)
     {
+        $thumb = $this->getFirstMediaUrl('default', 'thumb');
+
         return [
             'type' => 'book',
             'id' => $this->id,
@@ -27,7 +29,7 @@ class BookResource extends JsonResource
             'available' => (bool) $this->available,
             'user' => new UserResource($this->whenLoaded('user')),
             'category' => new CategoryResource($this->whenLoaded('category')),
-            'thumbnail' => $this->getFirstMediaUrl('default', 'thumb'),
+            'thumbnail' => empty($thumb) ? '/storage/placeholder.jpg': $thumb,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'media' => MediaResource::collection($this->whenLoaded('media'))

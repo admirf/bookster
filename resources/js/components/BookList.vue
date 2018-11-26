@@ -1,19 +1,23 @@
 <template>
     <div :class="addStyle">
-        <ul v-loading.fullscreen.lock="loading">
-            <li v-for="book in books">
-                {{ book }}
-            </li>
-        </ul>
+        <div class="items" v-loading.fullscreen.lock="loading">
+            <div class="item" v-for="book in books">
+                <BookCard :book="book"></BookCard>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+    import BookCard from './BookCard'
     import { mapGetters } from 'vuex'
     import axios from 'axios'
 
     export default {
         name: "BookList",
+        components: {
+            BookCard
+        },
         data() {
             return {
                 books: [],
@@ -61,5 +65,14 @@
         margin-top: 20px;
         margin-bottom: 20px;
         display: flex;
+    }
+
+    .items {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .items .item {
+        padding: 10px;
     }
 </style>
