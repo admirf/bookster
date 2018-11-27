@@ -1,5 +1,5 @@
 <template>
-    <div class="book">
+    <div class="book" @click="openDetails">
         <img :src="book.thumbnail"/>
         {{ book.title }}
         <br>
@@ -17,6 +17,16 @@
                 type: Object,
                 required: true
             }
+        },
+        methods: {
+            openDetails () {
+                this.$router.push({
+                    name: 'book',
+                    params: {
+                        id: this.book.id
+                    }
+                })
+            }
         }
     }
 </script>
@@ -31,7 +41,6 @@
 
     .book:hover {
         cursor: pointer;
-        box-shadow: 0 10px 6px -6px #777;
     }
 
     .price {

@@ -16,6 +16,7 @@ class MediaResource extends JsonResource
     {
         return [
             'type' => 'media',
+            'id' => $this->id,
             'url' => $this->getUrl(),
             'full' => $this->getFullUrl()
         ];
