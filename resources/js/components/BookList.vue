@@ -60,8 +60,8 @@
 
 <style scoped>
     .book-box {
+        border: 1px solid #C0C4CC;
         background-color: white;
-        padding: 20px;
         margin-top: 20px;
         margin-bottom: 20px;
         display: flex;
@@ -70,9 +70,10 @@
     .items {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .items .item {
-        padding: 10px;
+        padding: 18px;
     }
 </style>

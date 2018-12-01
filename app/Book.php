@@ -60,8 +60,8 @@ class Book extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
-            ->width(368)
-            ->height(232)
+            ->width(232)
+            ->height(368)
             ->sharpen(10);
     }
 }

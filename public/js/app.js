@@ -374,8 +374,7 @@ module.exports = {
 
 
 /***/ }),
-/* 1 */,
-/* 2 */
+/* 1 */
 /***/ (function(module, exports) {
 
 /*
@@ -457,6 +456,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
+/* 2 */,
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12852,25 +12852,26 @@ var index_esm = {
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-    handle: function handle(error, vueInstance) {
-        if (error.response && error.response.status === 422) {
-            var messages = error.response.data.errors;
-            for (var key in error.response.data.errors) {
-                for (var i in messages[key]) {
-                    vueInstance.$notify.error({
-                        title: 'Error',
-                        message: messages[key][i]
-                    });
-                }
-            }
-        }
+  handle: function handle(error, vueInstance) {
+    if (error.response && error.response.status === 422) {
+      var messages = error.response.data.errors;
 
-        if (error.response && error.response.status === 404) {
-            vueInstance.$router.push({
-                name: 'not-found'
-            });
+      for (var key in error.response.data.errors) {
+        for (var i in messages[key]) {
+          vueInstance.$notify.error({
+            title: 'Error',
+            message: messages[key][i]
+          });
         }
+      }
     }
+
+    if (error.response && error.response.status === 404) {
+      vueInstance.$router.push({
+        name: 'not-found'
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -14573,12 +14574,12 @@ if(false) {
 /* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(false);
+exports = module.exports = __webpack_require__(1)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n.header[data-v-41ac2cb0] {\n    padding: 0;\n}\n.footer[data-v-41ac2cb0] {\n    background-color: white;\n}\n.container[data-v-41ac2cb0] {\n    height: 100vh;\n}\n.fade-enter-active[data-v-41ac2cb0],\n.fade-leave-active[data-v-41ac2cb0] {\n    -webkit-transition-duration: 0.3s;\n            transition-duration: 0.3s;\n    -webkit-transition-property: opacity;\n    transition-property: opacity;\n    -webkit-transition-timing-function: ease;\n            transition-timing-function: ease;\n}\n.fade-enter[data-v-41ac2cb0],\n.fade-leave-active[data-v-41ac2cb0] {\n    opacity: 0\n}\n", ""]);
+exports.push([module.i, "\n.header[data-v-41ac2cb0] {\n    padding: 0;\n}\n.footer[data-v-41ac2cb0] {\n    background-color: white;\n    padding-left: 0;\n    padding-right: 0;\n}\n.container[data-v-41ac2cb0] {\n    height: 100vh;\n}\n.fade-enter-active[data-v-41ac2cb0],\n.fade-leave-active[data-v-41ac2cb0] {\n    -webkit-transition-duration: 0.3s;\n            transition-duration: 0.3s;\n    -webkit-transition-property: opacity;\n    transition-property: opacity;\n    -webkit-transition-timing-function: ease;\n            transition-timing-function: ease;\n}\n.fade-enter[data-v-41ac2cb0],\n.fade-leave-active[data-v-41ac2cb0] {\n    opacity: 0\n}\n", ""]);
 
 // exports
 
@@ -14646,14 +14647,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "app",
-    components: {
-        Navbar: __WEBPACK_IMPORTED_MODULE_0__components_Navbar___default.a,
-        Footer: __WEBPACK_IMPORTED_MODULE_1__components_Footer___default.a
-    }
+  name: "app",
+  components: {
+    Navbar: __WEBPACK_IMPORTED_MODULE_0__components_Navbar___default.a,
+    Footer: __WEBPACK_IMPORTED_MODULE_1__components_Footer___default.a
+  }
 });
 
 /***/ }),
@@ -14737,7 +14736,7 @@ if(false) {
 /* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(false);
+exports = module.exports = __webpack_require__(1)(false);
 // imports
 
 
@@ -14757,7 +14756,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__ = __webpack_require__(15);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
 //
@@ -14778,40 +14779,37 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-
-
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "navbar",
-    data: function data() {
-        return {
-            activeIndex: '0'
-        };
+  name: "navbar",
+  data: function data() {
+    return {
+      activeIndex: '0'
+    };
+  },
+  computed: _objectSpread({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
+    authToken: 'getAuthToken'
+  })),
+  methods: {
+    handleSelect: function handleSelect(key, keyPath) {
+      console.log(key, keyPath);
     },
+    logout: function logout() {
+      var _this = this;
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
-        authToken: 'getAuthToken'
-    })),
-    methods: {
-        handleSelect: function handleSelect(key, keyPath) {
-            console.log(key, keyPath);
-        },
-        logout: function logout() {
-            var _this = this;
-
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/logout', {
-                headers: {
-                    Authorization: 'Bearer ' + this.authToken
-                }
-            }).then(function (response) {
-                _this.$store.commit('setAuthToken', null);
-            }).catch(function (error) {
-                __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__["a" /* default */].handle(error, self);
-            });
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/logout', {
+        headers: {
+          Authorization: "Bearer ".concat(this.authToken)
         }
+      }).then(function (response) {
+        _this.$store.commit('setAuthToken', null);
+      }).catch(function (error) {
+        __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__["a" /* default */].handle(error, self);
+      });
     }
+  }
 });
 
 /***/ }),
@@ -14974,12 +14972,12 @@ if(false) {
 /* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(false);
+exports = module.exports = __webpack_require__(1)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n.footer[data-v-61a7c374] {\n    color: #011e4f;\n    text-align: center;\n    padding-top: 20px;\n}\n", ""]);
+exports.push([module.i, "\n.footer[data-v-61a7c374] {\n    border-top: 1px solid #C0C4CC;\n    color: #011e4f;\n    text-align: center;\n    padding-top: 20px;\n}\n", ""]);
 
 // exports
 
@@ -14996,9 +14994,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "Footer"
+  name: "Footer"
 });
 
 /***/ }),
@@ -15107,7 +15104,7 @@ if (false) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(global) {/**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.14.5
+ * @version 1.14.6
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
@@ -15857,8 +15854,8 @@ function getReferenceOffsets(state, popper, reference) {
 function getOuterSizes(element) {
   var window = element.ownerDocument.defaultView;
   var styles = window.getComputedStyle(element);
-  var x = parseFloat(styles.marginTop) + parseFloat(styles.marginBottom);
-  var y = parseFloat(styles.marginLeft) + parseFloat(styles.marginRight);
+  var x = parseFloat(styles.marginTop || 0) + parseFloat(styles.marginBottom || 0);
+  var y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
   var result = {
     width: element.offsetWidth + y,
     height: element.offsetHeight + x
@@ -16310,6 +16307,52 @@ function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
 
 /**
  * @function
+ * @memberof Popper.Utils
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Boolean} shouldRound - If the offsets should be rounded at all
+ * @returns {Object} The popper's position offsets rounded
+ *
+ * The tale of pixel-perfect positioning. It's still not 100% perfect, but as
+ * good as it can be within reason.
+ * Discussion here: https://github.com/FezVrasta/popper.js/pull/715
+ *
+ * Low DPI screens cause a popper to be blurry if not using full pixels (Safari
+ * as well on High DPI screens).
+ *
+ * Firefox prefers no rounding for positioning and does not have blurriness on
+ * high DPI screens.
+ *
+ * Only horizontal placement and left/right values need to be considered.
+ */
+function getRoundedOffsets(data, shouldRound) {
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+
+  var isVertical = ['left', 'right'].indexOf(data.placement) !== -1;
+  var isVariation = data.placement.indexOf('-') !== -1;
+  var sameWidthOddness = reference.width % 2 === popper.width % 2;
+  var bothOddWidth = reference.width % 2 === 1 && popper.width % 2 === 1;
+  var noRound = function noRound(v) {
+    return v;
+  };
+
+  var horizontalToInteger = !shouldRound ? noRound : isVertical || isVariation || sameWidthOddness ? Math.round : Math.floor;
+  var verticalToInteger = !shouldRound ? noRound : Math.round;
+
+  return {
+    left: horizontalToInteger(bothOddWidth && !isVariation && shouldRound ? popper.left - 1 : popper.left),
+    top: verticalToInteger(popper.top),
+    bottom: verticalToInteger(popper.bottom),
+    right: horizontalToInteger(popper.right)
+  };
+}
+
+var isFirefox = isBrowser && /Firefox/i.test(navigator.userAgent);
+
+/**
+ * @function
  * @memberof Modifiers
  * @argument {Object} data - The data object generated by `update` method
  * @argument {Object} options - Modifiers configuration and options
@@ -16338,15 +16381,7 @@ function computeStyle(data, options) {
     position: popper.position
   };
 
-  // Avoid blurry text by using full pixel integers.
-  // For pixel-perfect positioning, top/bottom prefers rounded
-  // values, while left/right prefers floored values.
-  var offsets = {
-    left: Math.floor(popper.left),
-    top: Math.round(popper.top),
-    bottom: Math.round(popper.bottom),
-    right: Math.floor(popper.right)
-  };
+  var offsets = getRoundedOffsets(data, window.devicePixelRatio < 2 || !isFirefox);
 
   var sideA = x === 'bottom' ? 'top' : 'bottom';
   var sideB = y === 'right' ? 'left' : 'right';
@@ -28046,17 +28081,14 @@ module.exports = __webpack_require__(124);
 /* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
 __webpack_require__(120);
 
 window.Vue = __webpack_require__(5);
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -28065,10 +28097,7 @@ window.Vue = __webpack_require__(5);
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('app', __webpack_require__(58));
-
-// const files = require.context('./', true, /\.vue$/i)
-
+Vue.component('app', __webpack_require__(58)); // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => {
 //     return Vue.component(_.last(key.split('/')).split('.')[0], files(key))
 // })
@@ -28087,9 +28116,7 @@ var app = new Vue({
 /* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
 window._ = __webpack_require__(121);
-
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -28102,17 +28129,15 @@ try {
 
   __webpack_require__(123);
 } catch (e) {}
-
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
+
 window.axios = __webpack_require__(8);
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
@@ -28126,17 +28151,13 @@ if (token) {
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-
 // import Echo from 'laravel-echo'
-
 // window.Pusher = require('pusher-js');
-
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,

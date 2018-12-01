@@ -4,7 +4,7 @@
         <p>
             Bookster is a clever sell and buy platform for books.
         </p>
-        <el-input v-model="query" class="search-input" placeholder="Inuyasha..." clearable />
+        <el-input v-model="query" class="search-input" placeholder="Harry Potter..." clearable />
         <el-button type="primary" class="search-btn" @click="search">Search</el-button>
     </div>
 </template>

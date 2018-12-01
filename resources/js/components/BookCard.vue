@@ -1,10 +1,16 @@
 <template>
     <div class="book" @click="openDetails">
-        <img :src="book.thumbnail"/>
-        {{ book.title }}
-        <br>
-        {{ book.author }}
-        <br>
+        <img :src="book.thumbnail" :alt="book.title" />
+        <hr>
+        <span class="title">
+            {{ book.title }}
+        </span>
+        <hr>
+        <span class="author">
+            <em>{{ book.author }}</em>
+        </span>
+        <hr>
+        <el-button class="buy-btn" type="primary" @click="addToCart">Buy</el-button>
         <div class="price">{{ book.price }} $</div>
     </div>
 </template>
@@ -26,6 +32,10 @@
                         id: this.book.id
                     }
                 })
+            },
+            addToCart (e) {
+                e.stopPropagation()
+                console.log('added to cart')
             }
         }
     }
@@ -35,20 +45,43 @@
     .book {
         background-color: whitesmoke;
         text-align: center;
-        border-radius: 2px;
-        padding-bottom: 18px;
+        padding-bottom: 44px;
+        outline: whitesmoke 4px solid;
+        transition: outline-color 0.4s;
     }
 
     .book:hover {
         cursor: pointer;
+        outline: grey 4px solid;
     }
 
     .price {
+        border-radius: 4px;
         float: right;
-        background-color: #1b4b72;
+        background-color: #011e4f;
         color: white;
         width: 80px;
-        margin-bottom: 10px;
+        height: 40px;
+        line-height: 40px;
+        font-size: larger;
+        margin: 2px;
+    }
+
+    .title {
+        font-size: large;
+    }
+
+    .buy-btn {
+        float: left;
+        width: 80px;
+        margin: 2px;
+    }
+
+    hr {
+        background-color: #011e4f;
+        color: #011e4f;
+        border: none;
+        height: 1px;
     }
 
     img {

@@ -36,6 +36,8 @@
 
     .footer {
         background-color: white;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .container {

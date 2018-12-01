@@ -26,7 +26,11 @@
 </script>
 
 <style scoped>
-    @media only screen and (max-width: 600px) {
+    .aside {
+        display: block;
+    }
+
+    @media only screen and (max-width: 700px) {
         .aside {
             display: none;
         }
