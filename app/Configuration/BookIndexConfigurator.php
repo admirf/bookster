@@ -18,7 +18,26 @@ class BookIndexConfigurator extends IndexConfigurator
 
     protected $defaultMapping = [
         'properties' => [
-
+            'title' => [
+                'type' => 'text',
+                'analyzer' => 'english'
+            ],
+            'author' => [
+                'type' => 'text'
+            ],
+            'description' => [
+                'type' => 'text',
+                'analyzer' => 'english'
+            ],
+            'isbn' => [
+                'type' => 'keyword'
+            ],
+            'edition' => [
+                'type' => 'keyword'
+            ],
+            'language' => [
+                'type' => 'keyword'
+            ]
         ]
     ];
 }

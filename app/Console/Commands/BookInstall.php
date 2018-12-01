@@ -37,7 +37,8 @@ class BookInstall extends Command
      */
     public function handle()
     {
-        $this->call('migrate:fresh');
+        $this->call('optimize');
+        $this->call('migrate:refresh');
         $this->call('db:seed');
         $this->call('key:generate');
         $this->call('jwt:secret');

@@ -9,6 +9,7 @@ $factory->define(App\Book::class, function(Faker $faker) {
         'title' => $faker->monthName,
         'author' => $faker->name,
         'language' => $faker->languageCode,
+        'description' => $faker->text,
         'price' => $faker->numberBetween(0, 100),
         'edition' => $faker->title,
         'num_of_pages' => $faker->numberBetween(100, 500),
