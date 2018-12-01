@@ -23589,7 +23589,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.aside[data-v-00c149ca] {\n    border: 1px solid #C0C4CC;\n    height: 600px;\n    background-color: white;\n    border-radius: 4px;\n    padding: 20px;\n}\n.title[data-v-00c149ca] {\n    font-size: large;\n    text-align: center;\n}\n.text-center[data-v-00c149ca] {\n    font-size: small;\n    text-align: center;\n}\n.cat-select[data-v-00c149ca] {\n    width: 100%;\n}\nhr[data-v-00c149ca] {\n    background-color: #011e4f;\n    color: #011e4f;\n    border: none;\n    height: 1px;\n    margin-bottom: 20px;\n    margin-top: 20px;\n}\n", ""]);
+exports.push([module.i, "\n.aside[data-v-00c149ca] {\n    border: 1px solid #C0C4CC;\n    height: 480px;\n    background-color: white;\n    border-radius: 4px;\n    padding: 20px;\n}\n.title[data-v-00c149ca] {\n    font-size: large;\n    text-align: center;\n}\n.text-center[data-v-00c149ca] {\n    font-size: small;\n    text-align: center;\n}\n.cat-select[data-v-00c149ca] {\n    width: 100%;\n}\nhr[data-v-00c149ca] {\n    background-color: #011e4f;\n    color: #011e4f;\n    border: none;\n    height: 1px;\n    margin-bottom: 20px;\n    margin-top: 20px;\n}\n", ""]);
 
 // exports
 
@@ -23600,6 +23600,13 @@ exports.push([module.i, "\n.aside[data-v-00c149ca] {\n    border: 1px solid #C0C
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(14);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -23661,10 +23668,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "FilterTable"
+  name: "FilterTable",
+  computed: _objectSpread({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapGetters */])({
+    query: 'getQuery'
+  })),
+  data: function data() {
+    return {
+      categories: [],
+      languages: ['en', 'bs', 'sr'],
+      form: {
+        category: null,
+        language: null,
+        price_lte: '',
+        price_gte: '',
+        page_lte: '',
+        page_gte: '',
+        author: '',
+        available: true
+      }
+    };
+  },
+  created: function created() {
+    this.loadCategories();
+  },
+  methods: {
+    loadCategories: function loadCategories() {
+      var _this = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/categories').then(function (response) {
+        _this.categories = response.data.data;
+      });
+    },
+    submitForm: function submitForm() {
+      if (this.query.length > 0) {
+        var query = this.buildQuery();
+        this.$store.commit('setQuery', query);
+      }
+    },
+    buildQuery: function buildQuery() {
+      var query = this.query;
+
+      for (var key in this.form) {
+        if (this.form[key] != null && this.form[key] !== '') {
+          query += "&".concat(key, "=").concat(this.form[key]);
+        }
+      }
+
+      return query;
+    }
+  }
 });
 
 /***/ }),
@@ -23693,7 +23748,17 @@ var render = function() {
             [
               _c("label", [_vm._v("Price Min")]),
               _vm._v(" "),
-              _c("el-input", { attrs: { "suffix-icon": "el-icon-minus" } })
+              _c("el-input", {
+                attrs: { "suffix-icon": "el-icon-minus" },
+                on: { change: _vm.submitForm },
+                model: {
+                  value: _vm.form.price_gte,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "price_gte", $$v)
+                  },
+                  expression: "form.price_gte"
+                }
+              })
             ],
             1
           ),
@@ -23704,7 +23769,17 @@ var render = function() {
             [
               _c("label", [_vm._v("Price Max")]),
               _vm._v(" "),
-              _c("el-input", { attrs: { "suffix-icon": "el-icon-plus" } })
+              _c("el-input", {
+                attrs: { "suffix-icon": "el-icon-plus" },
+                on: { change: _vm.submitForm },
+                model: {
+                  value: _vm.form.price_lte,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "price_lte", $$v)
+                  },
+                  expression: "form.price_lte"
+                }
+              })
             ],
             1
           )
@@ -23724,7 +23799,17 @@ var render = function() {
             [
               _c("label", [_vm._v("Pages Min")]),
               _vm._v(" "),
-              _c("el-input", { attrs: { "suffix-icon": "el-icon-minus" } })
+              _c("el-input", {
+                attrs: { "suffix-icon": "el-icon-minus" },
+                on: { change: _vm.submitForm },
+                model: {
+                  value: _vm.form.page_gte,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "page_gte", $$v)
+                  },
+                  expression: "form.page_gte"
+                }
+              })
             ],
             1
           ),
@@ -23735,7 +23820,17 @@ var render = function() {
             [
               _c("label", [_vm._v("Pages Max")]),
               _vm._v(" "),
-              _c("el-input", { attrs: { "suffix-icon": "el-icon-plus" } })
+              _c("el-input", {
+                attrs: { "suffix-icon": "el-icon-plus" },
+                on: { change: _vm.submitForm },
+                model: {
+                  value: _vm.form.page_lte,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "page_lte", $$v)
+                  },
+                  expression: "form.page_lte"
+                }
+              })
             ],
             1
           )
@@ -23758,10 +23853,26 @@ var render = function() {
                 "el-select",
                 {
                   staticClass: "cat-select",
-                  attrs: { placeholder: "Category..." }
+                  attrs: { placeholder: "Category..." },
+                  on: { change: _vm.submitForm },
+                  model: {
+                    value: _vm.form.category,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "category", $$v)
+                    },
+                    expression: "form.category"
+                  }
                 },
-                [_c("el-option", [_vm._v("HOla")])],
-                1
+                _vm._l(_vm.categories, function(category) {
+                  return _c(
+                    "el-option",
+                    {
+                      key: category.id,
+                      attrs: { label: category.name, value: category.id }
+                    },
+                    [_vm._v(_vm._s(category.name))]
+                  )
+                })
               )
             ],
             1
@@ -23781,7 +23892,17 @@ var render = function() {
             [
               _c("label", [_vm._v("Author")]),
               _vm._v(" "),
-              _c("el-input", { attrs: { placeholder: "Author" } })
+              _c("el-input", {
+                attrs: { placeholder: "Author" },
+                on: { change: _vm.submitForm },
+                model: {
+                  value: _vm.form.author,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "author", $$v)
+                  },
+                  expression: "form.author"
+                }
+              })
             ],
             1
           )
@@ -23804,14 +23925,23 @@ var render = function() {
                 "el-select",
                 {
                   staticClass: "cat-select",
-                  attrs: { placeholder: "Language" }
+                  attrs: { placeholder: "Language" },
+                  on: { change: _vm.submitForm },
+                  model: {
+                    value: _vm.form.language,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "language", $$v)
+                    },
+                    expression: "form.language"
+                  }
                 },
-                [
-                  _c("el-option", [
-                    _vm._v("\n                    English\n                ")
-                  ])
-                ],
-                1
+                _vm._l(_vm.languages, function(language) {
+                  return _c(
+                    "el-option",
+                    { key: language, attrs: { value: language } },
+                    [_vm._v(_vm._s(language))]
+                  )
+                })
               )
             ],
             1
@@ -23824,7 +23954,28 @@ var render = function() {
       _vm._v(" "),
       _c(
         "el-row",
-        [_c("el-col", [_c("el-checkbox", [_vm._v("Available")])], 1)],
+        [
+          _c(
+            "el-col",
+            [
+              _c(
+                "el-checkbox",
+                {
+                  on: { change: _vm.submitForm },
+                  model: {
+                    value: _vm.form.available,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "available", $$v)
+                    },
+                    expression: "form.available"
+                  }
+                },
+                [_vm._v("Available")]
+              )
+            ],
+            1
+          )
+        ],
         1
       )
     ],

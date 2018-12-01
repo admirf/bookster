@@ -7,30 +7,30 @@
         <el-row :gutter="20">
             <el-col :span="12" class="text-center">
                 <label>Price Min</label>
-                <el-input suffix-icon="el-icon-minus" />
+                <el-input @change="submitForm" v-model="form.price_gte" suffix-icon="el-icon-minus" />
             </el-col>
             <el-col :span="12" class="text-center">
                 <label>Price Max</label>
-                <el-input suffix-icon="el-icon-plus" />
+                <el-input @change="submitForm" v-model="form.price_lte" suffix-icon="el-icon-plus" />
             </el-col>
         </el-row>
         <br>
         <el-row :gutter="20">
             <el-col :span="12" class="text-center">
                 <label>Pages Min</label>
-                <el-input suffix-icon="el-icon-minus" />
+                <el-input @change="submitForm" v-model="form.page_gte" suffix-icon="el-icon-minus" />
             </el-col>
             <el-col :span="12" class="text-center">
                 <label>Pages Max</label>
-                <el-input suffix-icon="el-icon-plus" />
+                <el-input @change="submitForm" v-model="form.page_lte" suffix-icon="el-icon-plus" />
             </el-col>
         </el-row>
         <br>
         <el-row>
             <el-col class="text-center">
                 <label>Select Category</label>
-                <el-select placeholder="Category..." class="cat-select">
-                    <el-option>HOla</el-option>
+                <el-select @change="submitForm" v-model="form.category" placeholder="Category..." class="cat-select">
+                    <el-option v-for="category in categories" :label="category.name" :key="category.id" :value="category.id">{{ category.name }}</el-option>
                 </el-select>
             </el-col>
         </el-row>
@@ -38,39 +38,89 @@
         <el-row>
             <el-col class="text-center">
                 <label>Author</label>
-                <el-input placeholder="Author" />
+                <el-input @change="submitForm" v-model="form.author" placeholder="Author" />
             </el-col>
         </el-row>
         <br>
         <el-row>
             <el-col class="text-center">
                 <label>Language</label>
-                <el-select class="cat-select" placeholder="Language">
-                    <el-option>
-                        English
-                    </el-option>
+                <el-select @change="submitForm" v-model="form.language" class="cat-select" placeholder="Language">
+                    <el-option v-for="language in languages" :value="language" :key="language">{{ language }}</el-option>
                 </el-select>
             </el-col>
         </el-row>
         <br>
         <el-row>
             <el-col>
-                <el-checkbox>Available</el-checkbox>
+                <el-checkbox @change="submitForm" v-model="form.available">Available</el-checkbox>
             </el-col>
         </el-row>
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
+    import { mapGetters } from 'vuex'
+
     export default {
-        name: "FilterTable"
+        name: "FilterTable",
+        computed: {
+            ...mapGetters({
+                query: 'getQuery',
+            }),
+        },
+        data () {
+            return {
+                categories: [],
+                languages: [
+                    'en', 'bs', 'sr'
+                ],
+                form: {
+                    category: null,
+                    language: null,
+                    price_lte: '',
+                    price_gte: '',
+                    page_lte: '',
+                    page_gte: '',
+                    author: '',
+                    available: true
+                }
+            }
+        },
+        created () {
+            this.loadCategories()
+        },
+        methods: {
+            loadCategories () {
+                axios.get('/api/categories').then(response => {
+                    this.categories = response.data.data
+                })
+            },
+            submitForm () {
+                if (this.query.length > 0) {
+                    let query = this.buildQuery()
+                    this.$store.commit('setQuery', query)
+                }
+            },
+            buildQuery () {
+                let query = this.query
+                for (let key in this.form) {
+                    if (this.form[key] != null && this.form[key] !== '') {
+                        query += `&${key}=${this.form[key]}`
+                    }
+                }
+
+                return query
+            }
+        }
     }
 </script>
 
 <style scoped>
     .aside {
         border: 1px solid #C0C4CC;
-        height: 600px;
+        height: 480px;
         background-color: white;
         border-radius: 4px;
         padding: 20px;
