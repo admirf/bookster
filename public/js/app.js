@@ -14664,6 +14664,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {
     Navbar: __WEBPACK_IMPORTED_MODULE_0__components_Navbar___default.a,
     Footer: __WEBPACK_IMPORTED_MODULE_1__components_Footer___default.a
+  },
+  beforeCreate: function beforeCreate() {
+    var cart = JSON.parse(localStorage.getItem('cart'));
+
+    if (cart) {
+      this.$store.commit('setCart', cart);
+    }
   }
 });
 

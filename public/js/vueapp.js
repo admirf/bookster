@@ -15471,6 +15471,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {
     Navbar: __WEBPACK_IMPORTED_MODULE_0__components_Navbar___default.a,
     Footer: __WEBPACK_IMPORTED_MODULE_1__components_Footer___default.a
+  },
+  beforeCreate: function beforeCreate() {
+    var cart = JSON.parse(localStorage.getItem('cart'));
+
+    if (cart) {
+      this.$store.commit('setCart', cart);
+    }
   }
 });
 
@@ -22192,7 +22199,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.login-container[data-v-3b6adb30] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n.login-text[data-v-3b6adb30] {\n    text-align: center;\n}\n.login-box[data-v-3b6adb30] {\n    padding: 20px 20px 20px 20px;\n    background-color: white;\n    width: 500px;\n}\n.login-btn[data-v-3b6adb30] {\n    width: 350px;\n    display: block;\n    margin: 0 auto 20px auto;\n}\n.login-input[data-v-3b6adb30] {\n    width: 350px;\n    display: block;\n    margin: 20px auto 20px auto;\n}\n@media screen and (max-width: 600px) {\n.login-box[data-v-3b6adb30] {\n        margin-left: 0;\n        margin-right: 0;\n        width: 100%;\n}\n.login-input[data-v-3b6adb30] {\n        width: 100%;\n}\n.login-btn[data-v-3b6adb30] {\n        width: 100%;\n}\n}\n", ""]);
+exports.push([module.i, "\n.login-container[data-v-3b6adb30] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n.login-text[data-v-3b6adb30] {\n    text-align: center;\n}\n.login-box[data-v-3b6adb30] {\n    padding: 20px 20px 20px 20px;\n    background-color: white;\n    width: 500px;\n    text-align: center;\n}\n.login-btn[data-v-3b6adb30] {\n    width: 350px;\n    display: block;\n    margin: 0 auto 20px auto;\n}\n.login-input[data-v-3b6adb30] {\n    width: 350px;\n    display: block;\n    margin: 20px auto 20px auto;\n}\na[data-v-3b6adb30] {\n    text-decoration: none;\n}\n@media screen and (max-width: 600px) {\n.login-box[data-v-3b6adb30] {\n        margin-left: 0;\n        margin-right: 0;\n        width: 100%;\n}\n.login-input[data-v-3b6adb30] {\n        width: 100%;\n}\n.login-btn[data-v-3b6adb30] {\n        width: 100%;\n}\n}\n", ""]);
 
 // exports
 
@@ -22217,6 +22224,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -22230,6 +22238,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   methods: {
+    goToRegister: function goToRegister() {
+      this.$router.push('register');
+    },
     login: function login() {
       var self = this;
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/login', this.signInForm).then(function (response) {
@@ -22308,7 +22319,11 @@ var render = function() {
             on: { click: _vm.login }
           },
           [_vm._v("Sign Up")]
-        )
+        ),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "#" }, on: { click: _vm.goToRegister } }, [
+          _vm._v("Don't have an account ?")
+        ])
       ],
       1
     )
@@ -22548,7 +22563,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.register-container[data-v-364a2fac] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n.register-text[data-v-364a2fac] {\n    text-align: center;\n}\n.register-box[data-v-364a2fac] {\n    padding: 20px 20px 20px 20px;\n    background-color: white;\n    width: 500px;\n}\n.register-btn[data-v-364a2fac] {\n    width: 350px;\n    display: block;\n    margin: 0 auto 20px auto;\n}\n.register-input[data-v-364a2fac] {\n    width: 350px;\n    display: block;\n    margin: 20px auto 20px auto;\n}\n@media screen and (max-width: 600px) {\n.register-box[data-v-364a2fac] {\n        margin-left: 0;\n        margin-right: 0;\n        width: 100%;\n}\n.register-input[data-v-364a2fac] {\n        width: 100%;\n}\n.register-btn[data-v-364a2fac] {\n        width: 100%;\n}\n}\n", ""]);
+exports.push([module.i, "\n.register-container[data-v-364a2fac] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n.register-text[data-v-364a2fac] {\n    text-align: center;\n}\n.register-box[data-v-364a2fac] {\n    padding: 20px 20px 20px 20px;\n    background-color: white;\n    width: 500px;\n    text-align: center;\n}\n.register-btn[data-v-364a2fac] {\n    width: 350px;\n    display: block;\n    margin: 0 auto 20px auto;\n}\n.register-input[data-v-364a2fac] {\n    width: 350px;\n    display: block;\n    margin: 20px auto 20px auto;\n}\na[data-v-364a2fac] {\n    text-decoration: none;\n}\n@media screen and (max-width: 600px) {\n.register-box[data-v-364a2fac] {\n        margin-left: 0;\n        margin-right: 0;\n        width: 100%;\n}\n.register-input[data-v-364a2fac] {\n        width: 100%;\n}\n.register-btn[data-v-364a2fac] {\n        width: 100%;\n}\n}\n", ""]);
 
 // exports
 
@@ -22562,6 +22577,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_errorHandler__ = __webpack_require__(15);
+//
 //
 //
 //
@@ -22590,6 +22606,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   methods: {
+    goToLogin: function goToLogin() {
+      this.$router.push('login');
+    },
     register: function register() {
       var self = this;
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/sign-up', this.signUpForm).then(function (response) {
@@ -22694,7 +22713,11 @@ var render = function() {
             on: { click: _vm.register }
           },
           [_vm._v("Sign Up")]
-        )
+        ),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "#" }, on: { click: _vm.goToLogin } }, [
+          _vm._v("Already have an Account?")
+        ])
       ],
       1
     )
@@ -68150,8 +68173,16 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_0_vuex
     setAuthToken: function setAuthToken(state, t) {
       state.authToken = t;
     },
+    setCart: function setCart(state, o) {
+      state.cart = o;
+    },
     addToCart: function addToCart(state, o) {
       state.cart.push(o);
+      localStorage.setItem('cart', JSON.stringify(state.cart));
+    },
+    removeFromCart: function removeFromCart(state, index) {
+      state.cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(state.cart));
     },
     emptyCart: function emptyCart(state) {
       state.cart = [];
@@ -68471,7 +68502,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.box[data-v-50b3bf9d] {\n    background-color: white;\n    height: 600px;\n    width: 100%;\n}\n@media screen and (min-width: 600px) {\n.box[data-v-50b3bf9d] {\n        width: 500px;\n}\n}\n", ""]);
+exports.push([module.i, "\n.buy-btn[data-v-50b3bf9d] {\n    width: 100%;\n}\n.box[data-v-50b3bf9d] {\n    background-color: white;\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    text-align: center;\n}\n.table-header[data-v-50b3bf9d] {\n    border-bottom: #011e4f 1px solid;\n    margin: 18px;\n    padding-bottom: 18px;\n}\n.table-footer[data-v-50b3bf9d] {\n    border-top: #011e4f 1px solid;\n    margin: 18px;\n    padding-top: 18px;\n}\n.table-row[data-v-50b3bf9d] {\n    padding: 18px;\n}\n@media screen and (min-width: 600px) {\n.box[data-v-50b3bf9d] {\n        width: 500px;\n}\n}\n", ""]);
 
 // exports
 
@@ -68499,12 +68530,79 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Receipt",
   computed: _objectSpread({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
-    cart: 'getCart'
-  }))
+    cart: 'getCart',
+    authToken: 'getAuthToken'
+  }), {
+    total: function total() {
+      return this.cart.reduce(function (val, book) {
+        return val + book.price;
+      }, 0);
+    }
+  }),
+  methods: {
+    buy: function buy() {
+      if (!this.authToken) {
+        this.$notify.error({
+          title: 'Buy Error',
+          message: 'You need an account to buy books'
+        });
+        this.$router.push('login');
+      }
+    },
+    viewBook: function viewBook(id) {
+      this.$router.push({
+        name: 'book',
+        params: {
+          id: id
+        }
+      });
+    },
+    removeBook: function removeBook(index) {
+      this.$store.commit('removeFromCart', index);
+    }
+  }
 });
 
 /***/ }),
@@ -68518,7 +68616,134 @@ var render = function() {
   return _c("div", [
     !this.cart.length
       ? _c("div", [_c("h2", [_vm._v("Nothing in the Cart")])])
-      : _c("div", { staticClass: "box" })
+      : _c(
+          "div",
+          { staticClass: "box" },
+          [
+            _c(
+              "el-row",
+              { staticClass: "table-header" },
+              [
+                _c("el-col", { attrs: { span: 2 } }, [_vm._v("ID")]),
+                _vm._v(" "),
+                _c("el-col", { attrs: { span: 4 } }, [_vm._v("Title")]),
+                _vm._v(" "),
+                _c("el-col", { attrs: { span: 4 } }, [_vm._v("Price")]),
+                _vm._v(" "),
+                _c("el-col", { attrs: { span: 4 } }, [_vm._v("Seller")]),
+                _vm._v(" "),
+                _c("el-col", { attrs: { span: 5 } }, [_vm._v("View")]),
+                _vm._v(" "),
+                _c("el-col", { attrs: { span: 5 } }, [_vm._v("Remove")])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.cart, function(book, index) {
+              return _c(
+                "el-row",
+                {
+                  key: book.id,
+                  staticClass: "table-row",
+                  attrs: { gutter: 20 }
+                },
+                [
+                  _c("el-col", { attrs: { span: 2 } }, [
+                    _c("strong", [_vm._v(_vm._s(book.id))])
+                  ]),
+                  _vm._v(" "),
+                  _c("el-col", { attrs: { span: 4 } }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(book.title) +
+                        "\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("el-col", { attrs: { span: 4 } }, [
+                    _c("i", [_vm._v(_vm._s(book.price))]),
+                    _vm._v(" $\n            ")
+                  ]),
+                  _vm._v(" "),
+                  _c("el-col", { attrs: { span: 4 } }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(book.user.name) +
+                        "\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 10 } },
+                    [
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { type: "primary" },
+                          on: {
+                            click: function($event) {
+                              _vm.viewBook(book.id)
+                            }
+                          }
+                        },
+                        [_vm._v("View")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { type: "danger" },
+                          on: {
+                            click: function($event) {
+                              _vm.removeBook(index)
+                            }
+                          }
+                        },
+                        [_vm._v("Remove")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            }),
+            _vm._v(" "),
+            _c(
+              "el-row",
+              { staticClass: "table-footer" },
+              [
+                _c("el-col", { attrs: { span: 12 } }, [
+                  _c("label", [_vm._v("Total")]),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("i", [_vm._v(_vm._s(_vm.total))]),
+                  _vm._v(" $\n            ")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 12 } },
+                  [
+                    _c(
+                      "el-button",
+                      {
+                        staticClass: "buy-btn",
+                        attrs: { type: "success" },
+                        on: { click: _vm.buy }
+                      },
+                      [_vm._v("Buy")]
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          2
+        )
   ])
 }
 var staticRenderFns = []

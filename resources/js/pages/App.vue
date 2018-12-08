@@ -25,6 +25,12 @@
         components: {
             Navbar,
             Footer
+        },
+        beforeCreate() {
+            let cart = JSON.parse(localStorage.getItem('cart'))
+            if (cart) {
+                this.$store.commit('setCart', cart)
+            }
         }
     }
 </script>

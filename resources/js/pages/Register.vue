@@ -7,6 +7,7 @@
             <el-input type="password" v-model="signUpForm.password" class="register-input" placeholder="Password" clearable />
             <el-input type="password" v-model="signUpForm.password_confirmation" class="register-input" placeholder="Repeat Password" clearable />
             <el-button type="primary" class="register-btn" @click="register">Sign Up</el-button>
+            <a href="#" @click="goToLogin">Already have an Account?</a>
         </div>
     </div>
 </template>
@@ -28,6 +29,9 @@
             }
         },
         methods: {
+            goToLogin () {
+                this.$router.push('login')
+            },
             register () {
                 let self = this
                 axios.post('/api/sign-up', this.signUpForm).then(response => {
@@ -57,6 +61,7 @@
         padding: 20px 20px 20px 20px;
         background-color: white;
         width: 500px;
+        text-align: center;
     }
 
     .register-btn {
@@ -69,6 +74,10 @@
         width: 350px;
         display: block;
         margin: 20px auto 20px auto;
+    }
+
+    a {
+        text-decoration: none;
     }
     
     @media screen and (max-width: 600px) {

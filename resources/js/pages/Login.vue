@@ -5,6 +5,7 @@
             <el-input v-model="signInForm.email" class="login-input" placeholder="Email" clearable />
             <el-input type="password" v-model="signInForm.password" class="login-input" placeholder="Password" clearable />
             <el-button type="primary" class="login-btn" @click="login">Sign Up</el-button>
+            <a href="#" @click="goToRegister">Don't have an account ?</a>
         </div>
     </div>
 </template>
@@ -24,6 +25,9 @@
             }
         },
         methods: {
+            goToRegister () {
+                this.$router.push('register')
+            },
             login () {
                 let self = this
                 axios.post('/api/login', this.signInForm).then(response => {
@@ -57,6 +61,7 @@
         padding: 20px 20px 20px 20px;
         background-color: white;
         width: 500px;
+        text-align: center;
     }
 
     .login-btn {
@@ -69,6 +74,10 @@
         width: 350px;
         display: block;
         margin: 20px auto 20px auto;
+    }
+
+    a {
+        text-decoration: none;
     }
 
     @media screen and (max-width: 600px) {
