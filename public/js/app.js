@@ -14843,9 +14843,7 @@ var render = function() {
             _vm._v("Search")
           ]),
           _vm._v(" "),
-          _c("el-menu-item", { attrs: { index: "/basket" } }, [
-            _vm._v("My Basket")
-          ]),
+          _c("el-menu-item", { attrs: { index: "/cart" } }, [_vm._v("Cart")]),
           _vm._v(" "),
           _vm.authToken
             ? _c(

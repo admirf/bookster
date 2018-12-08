@@ -9,7 +9,7 @@
                  :router="true">
             <el-menu-item index="/">Home</el-menu-item>
             <el-menu-item index="/results">Search</el-menu-item>
-            <el-menu-item index="/basket">My Basket</el-menu-item>
+            <el-menu-item index="/cart">Cart</el-menu-item>
             <el-menu-item v-if="authToken" index="#" @click="logout" class="right">Log Out</el-menu-item>
             <el-menu-item v-if="!authToken" index="/login" class="right">Login</el-menu-item>
             <el-menu-item v-if="!authToken" index="/register" class="right">Register</el-menu-item>

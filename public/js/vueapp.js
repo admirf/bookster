@@ -15650,9 +15650,7 @@ var render = function() {
             _vm._v("Search")
           ]),
           _vm._v(" "),
-          _c("el-menu-item", { attrs: { index: "/basket" } }, [
-            _vm._v("My Basket")
-          ]),
+          _c("el-menu-item", { attrs: { index: "/cart" } }, [_vm._v("Cart")]),
           _vm._v(" "),
           _vm.authToken
             ? _c(
@@ -23955,7 +23953,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.book-box[data-v-584825dc] {\n    border: 1px solid #C0C4CC;\n    background-color: white;\n    margin-top: 20px;\n    margin-bottom: 20px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n.items[data-v-584825dc] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n        flex-wrap: wrap;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n.items .item[data-v-584825dc] {\n    padding: 18px;\n}\n", ""]);
+exports.push([module.i, "\n.book-box[data-v-584825dc] {\n    border: 1px solid #C0C4CC;\n    background-color: white;\n    margin-top: 20px;\n    margin-bottom: 20px;\n    padding: 18px;\n}\n.items[data-v-584825dc] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: wrap;\n        flex-wrap: wrap;\n    -webkit-box-pack: space-evenly;\n        -ms-flex-pack: space-evenly;\n            justify-content: space-evenly;\n}\n.items .item[data-v-584825dc] {\n    padding: 18px;\n}\n.pagination[data-v-584825dc] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n", ""]);
 
 // exports
 
@@ -23986,6 +23984,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -23998,7 +24005,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       books: [],
-      loading: false
+      loading: false,
+      total: 0,
+      perPage: 0,
+      currPage: 1
     };
   },
   computed: _objectSpread({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])({
@@ -24013,9 +24023,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   watch: {
     query: function query() {
+      this.resetPage();
       this.search();
     },
     filters: function filters() {
+      this.resetPage();
       this.search();
     }
   },
@@ -24027,15 +24039,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.query.length > 0) {
         this.loading = true;
         var self = this;
-        console.log("/api/search?q=".concat(this.query).concat(this.filters));
-        __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get("/api/search?q=".concat(this.query).concat(this.filters)).then(function (response) {
+        console.log("/api/search?q=".concat(this.query).concat(this.filters, "&page=").concat(this.currPage));
+        __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get("/api/search?q=".concat(this.query).concat(this.filters, "&page=").concat(this.currPage)).then(function (response) {
           self.books = response.data.data;
-          self.loading = false;
+          self.perPage = response.data.meta.per_page;
+          self.total = response.data.meta.total;
         }).catch(function (error) {
           __WEBPACK_IMPORTED_MODULE_1__util_errorHandler__["a" /* default */].handle(error, self);
+        }).finally(function () {
           self.loading = false;
         });
       }
+    },
+    handlePageChange: function handlePageChange(page) {
+      this.currPage = page;
+      this.search();
+    },
+    resetPage: function resetPage() {
+      this.currPage = 1;
     }
   }
 });
@@ -24271,7 +24292,26 @@ var render = function() {
           1
         )
       })
-    )
+    ),
+    _vm._v(" "),
+    _vm.books.length
+      ? _c(
+          "div",
+          { staticClass: "pagination" },
+          [
+            _c("el-pagination", {
+              staticClass: "pagination-item",
+              attrs: {
+                layout: "prev, pager, next",
+                "page-size": _vm.perPage,
+                total: _vm.total
+              },
+              on: { "current-change": _vm.handlePageChange }
+            })
+          ],
+          1
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
