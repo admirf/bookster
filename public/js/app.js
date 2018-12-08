@@ -12864,7 +12864,7 @@ var index_esm = {
                 title: 'Error',
                 message: messages[key][i]
               });
-            }, 200);
+            }, 100);
           };
 
           for (var i in messages[key]) {

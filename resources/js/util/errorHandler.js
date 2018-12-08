@@ -9,7 +9,7 @@ export default {
                             title: 'Error',
                             message: messages[key][i],
                         });
-                    }, 200)
+                    }, 100)
                 }
             }
         }

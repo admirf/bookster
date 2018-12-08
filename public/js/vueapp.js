@@ -13450,7 +13450,7 @@ module.exports = function (it, key) {
                 title: 'Error',
                 message: messages[key][i]
               });
-            }, 200);
+            }, 100);
           };
 
           for (var i in messages[key]) {

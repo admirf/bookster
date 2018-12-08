@@ -45,11 +45,9 @@ class BookSearchController extends Controller
         $results = isset($query['category']) ? $results->where('category_id', $query['category']): $results;
         $results = isset($query['available']) ? $results->where('available', $query['available']): $results;
 
-        return BookResource::collection(
-            $results->with('user')
-                    ->with('media')
-                    ->with('category')
-                    ->paginate(10)
-        );
+        $paginatedResults = $results->paginate(10);
+        $paginatedResults->load('user')->load('media')->load('category');
+
+        return BookResource::collection($paginatedResults);
     }
 }
