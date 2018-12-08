@@ -7,7 +7,7 @@ import NotFound from './pages/NotFound'
 import Register from './pages/Register'
 import Search from './pages/Search'
 import Book from './pages/Book'
-import Basket from './pages/Basket'
+import Cart from './pages/Cart'
 import Results from './pages/Results'
 import ElementUI from 'element-ui';
 import store from './store/index'
@@ -26,9 +26,9 @@ const router = new VueRouter({
             component: Search,
         },
         {
-            path: '/basket',
-            name: 'basket',
-            component: Basket
+            path: '/cart',
+            name: 'cart',
+            component: Cart
         },
         {
             path: '/results',

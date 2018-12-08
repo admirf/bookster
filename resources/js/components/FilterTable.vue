@@ -18,11 +18,11 @@
         <el-row :gutter="20">
             <el-col :span="12" class="text-center">
                 <label>Pages Min</label>
-                <el-input @change="submitForm" v-model="form.page_gte" suffix-icon="el-icon-minus" />
+                <el-input @change="submitForm" v-model="form.pages_gte" suffix-icon="el-icon-minus" />
             </el-col>
             <el-col :span="12" class="text-center">
                 <label>Pages Max</label>
-                <el-input @change="submitForm" v-model="form.page_lte" suffix-icon="el-icon-plus" />
+                <el-input @change="submitForm" v-model="form.pages_lte" suffix-icon="el-icon-plus" />
             </el-col>
         </el-row>
         <br>
@@ -68,6 +68,7 @@
         computed: {
             ...mapGetters({
                 query: 'getQuery',
+                filters: 'getFilters'
             }),
         },
         data () {
@@ -81,8 +82,8 @@
                     language: null,
                     price_lte: '',
                     price_gte: '',
-                    page_lte: '',
-                    page_gte: '',
+                    pages_lte: '',
+                    pages_gte: '',
                     author: '',
                     available: true
                 }
@@ -98,13 +99,11 @@
                 })
             },
             submitForm () {
-                if (this.query.length > 0) {
-                    let query = this.buildQuery()
-                    this.$store.commit('setQuery', query)
-                }
+                let filters = this.buildQuery()
+                this.$store.commit('setFilters', filters)
             },
             buildQuery () {
-                let query = this.query
+                let query = ''
                 for (let key in this.form) {
                     if (this.form[key] != null && this.form[key] !== '') {
                         query += `&${key}=${this.form[key]}`

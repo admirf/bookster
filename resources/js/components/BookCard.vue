@@ -10,7 +10,7 @@
             <em>{{ book.author }}</em>
         </span>
         <hr>
-        <el-button class="buy-btn" type="primary" @click="addToCart">Buy</el-button>
+        <el-button class="buy-btn" type="primary" @click="addToCart">Add</el-button>
         <div class="price">{{ book.price }} $</div>
     </div>
 </template>
@@ -35,7 +35,12 @@
             },
             addToCart (e) {
                 e.stopPropagation()
-                console.log('added to cart')
+                this.$store.dispatch('addToCart', this.book).then(() => {
+                    this.$notify.success({
+                        title: 'Success',
+                        message: `Item ID: ${this.book.id} added to Cart.`,
+                    })
+                })
             }
         }
     }

@@ -240,6 +240,21 @@ return [
         Illuminate\Auth\Access\AuthorizationException::class => 403,
         Spatie\Permission\Exceptions\UnauthorizedException::class => 403,
         Illuminate\Validation\ValidationException::class => 422
-    ]
+    ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Search Default Value Configurations
+    |--------------------------------------------------------------------------
+    |
+    | This array contains default values for search
+    |
+    */
+
+    'search' => [
+        'price_lte' => 100000,
+        'price_gte' => 0,
+        'pages_lte' => 100000,
+        'pages_gte' => 0
+    ],
 ];

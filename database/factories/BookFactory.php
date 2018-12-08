@@ -8,6 +8,7 @@ $factory->define(App\Book::class, function(Faker $faker) {
         'category_id' => App\Category::inRandomOrder()->first()->id,
         'title' => $faker->monthName,
         'author' => $faker->name,
+        'available' => true,
         'language' => $faker->languageCode,
         'description' => $faker->text,
         'price' => $faker->numberBetween(0, 100),

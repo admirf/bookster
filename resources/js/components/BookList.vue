@@ -10,6 +10,7 @@
 
 <script>
     import BookCard from './BookCard'
+    import ErrorHandler from '../util/errorHandler'
     import { mapGetters } from 'vuex'
     import axios from 'axios'
 
@@ -27,6 +28,7 @@
         computed: {
             ...mapGetters({
                 query: 'getQuery',
+                filters: 'getFilters'
             }),
             addStyle () {
                 if (this.books.length > 0) {
@@ -36,6 +38,9 @@
         },
         watch: {
             query () {
+                this.search()
+            },
+            filters () {
                 this.search()
             }
         },
@@ -47,8 +52,12 @@
                 if (this.query.length > 0) {
                     this.loading = true
                     let self = this
-                    axios.get(`/api/search?q=${this.query}`).then((response) => {
+                    console.log(`/api/search?q=${this.query}${this.filters}`)
+                    axios.get(`/api/search?q=${this.query}${this.filters}`).then((response) => {
                         self.books = response.data.data
+                        self.loading = false
+                    }).catch(error => {
+                        ErrorHandler.handle(error, self)
                         self.loading = false
                     })
                 }

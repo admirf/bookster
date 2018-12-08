@@ -37,6 +37,9 @@ class BookIndexConfigurator extends IndexConfigurator
             ],
             'language' => [
                 'type' => 'keyword'
+            ],
+            'available' => [
+                'type' => 'boolean'
             ]
         ]
     ];
