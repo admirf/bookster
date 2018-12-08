@@ -19,7 +19,7 @@ class TransactionPolicy
 
     public function view(User $user, Transaction $transaction)
     {
-        return $user->id == $transaction->buyer_id || $user->id == $transaction->book->user_id;
+        return $user->id == $transaction->buyer_id;
     }
 
     public function complete(User $user, Transaction $transaction)

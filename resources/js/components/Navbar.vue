@@ -13,6 +13,7 @@
             <el-menu-item v-if="authToken" index="#" @click="logout" class="right">Log Out</el-menu-item>
             <el-menu-item v-if="!authToken" index="/login" class="right">Login</el-menu-item>
             <el-menu-item v-if="!authToken" index="/register" class="right">Register</el-menu-item>
+            <el-menu-item v-if="authToken" index="/account" class="right">Account</el-menu-item>
         </el-menu>
     </div>
 </template>

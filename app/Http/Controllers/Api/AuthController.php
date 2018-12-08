@@ -15,6 +15,7 @@ class AuthController extends Controller
         $attributes = $this->validate($request, [
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
+            'address' => 'required|string',
             'password' => 'required|string|confirmed'
         ]);
 
@@ -47,7 +48,7 @@ class AuthController extends Controller
 
     public function me()
     {
-        return new UserResource(auth()->user()->load('books'));
+        return new UserResource(auth()->user()->load('books')->load('books.media'));
     }
 
     public function logout()

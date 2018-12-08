@@ -20,6 +20,8 @@ Route::namespace('Api')->group(function () {
     Route::get('/logout', 'AuthController@logout')->middleware(['auth:api']);
     Route::get('/refresh', 'AuthController@refresh')->middleware(['auth:api']);
     Route::get('/me', 'AuthController@me')->middleware(['auth:api']);
+    Route::get('/balance', 'UserController@balance')->middleware(['auth:api']);
+    Route::post('/add-balance', 'UserController@addBalance')->middleware(['auth:api']);
 
     Route::get('/users', 'UserController@index');
     Route::get('/users/{user}', 'UserController@show');

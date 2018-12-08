@@ -4,6 +4,7 @@
             <h2 class="register-text">Create an Account</h2>
             <el-input v-model="signUpForm.name" class="register-input" placeholder="User Name" clearable />
             <el-input v-model="signUpForm.email" class="register-input" placeholder="Email" clearable />
+            <el-input v-model="signUpForm.address" class="register-input" placeholder="Address" clearable=""></el-input>
             <el-input type="password" v-model="signUpForm.password" class="register-input" placeholder="Password" clearable />
             <el-input type="password" v-model="signUpForm.password_confirmation" class="register-input" placeholder="Repeat Password" clearable />
             <el-button type="primary" class="register-btn" @click="register">Sign Up</el-button>
@@ -23,6 +24,7 @@
                 signUpForm: {
                     name: "",
                     email: "",
+                    address: "",
                     password: "",
                     password_confirmation: ""
                 }

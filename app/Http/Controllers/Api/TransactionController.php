@@ -11,14 +11,14 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        return TransactionResource::collection(auth()->user()->transactions->load('book'));
+        return TransactionResource::collection(auth()->user()->transactions->load('books'));
     }
 
     public function show(Transaction $transaction)
     {
         $this->authorize('view', $transaction);
 
-        return new TransactionResource($transaction->load('buyer')->load('book'));
+        return new TransactionResource($transaction->load('buyer')->load('books')->load('books.user'));
     }
 
     public function complete(Transaction $transaction)

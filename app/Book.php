@@ -50,7 +50,7 @@ class Book extends Model implements HasMedia
 
     public function transactions()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->belongsToMany(Transaction::class);
     }
 
     /**

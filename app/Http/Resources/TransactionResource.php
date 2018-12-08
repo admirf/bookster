@@ -22,7 +22,7 @@ class TransactionResource extends JsonResource
             'completed_at' => $this->completed_at,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'book' => new BookResource($this->whenLoaded('book')),
+            'books' => BookResource::collection($this->whenLoaded('books')),
             'buyer' => new UserResource($this->whenLoaded('buyer'))
         ];
     }

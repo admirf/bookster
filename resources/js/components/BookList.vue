@@ -66,7 +66,6 @@
                 if (this.query.length > 0) {
                     this.loading = true
                     let self = this
-                    console.log(`/api/search?q=${this.query}${this.filters}&page=${this.currPage}`)
                     axios.get(`/api/search?q=${this.query}${this.filters}&page=${this.currPage}`).then((response) => {
                         self.books = response.data.data
                         self.perPage = response.data.meta.per_page

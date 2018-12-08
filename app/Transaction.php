@@ -26,9 +26,9 @@ class Transaction extends Model
         return $query->where('completed', true);
     }
 
-    public function book()
+    public function books()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsToMany(Book::class);
     }
 
     public function buyer()

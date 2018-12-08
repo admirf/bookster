@@ -18,7 +18,8 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
-        'balance'
+        'balance',
+        'address'
     ];
 
     protected $hidden = [
@@ -44,6 +45,12 @@ class User extends Authenticatable implements JWTSubject
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function addBalance($credits)
+    {
+        $this->balance += $credits;
+        $this->save();
     }
 
     /**

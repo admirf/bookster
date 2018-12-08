@@ -33,6 +33,7 @@ export default new Vuex.Store({
         },
         setAuthToken (state, t) {
             state.authToken = t
+            localStorage.setItem('authToken', state.authToken)
         },
         setCart (state, o) {
             state.cart = o

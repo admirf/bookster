@@ -31,6 +31,11 @@
             if (cart) {
                 this.$store.commit('setCart', cart)
             }
+
+            let token = localStorage.getItem('authToken')
+            if (token) {
+                this.$store.commit('setAuthToken', token)
+            }
         }
     }
 </script>

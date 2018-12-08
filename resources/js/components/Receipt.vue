@@ -14,22 +14,22 @@
                 <el-col :span="5">Remove</el-col>
             </el-row>
 
-            <el-row class="table-row" v-for="(book, index) in cart" :key="book.id" :gutter="20">
+            <el-row class="table-row align-vertical" v-for="(book, index) in cart" :key="book.id" :gutter="20">
                 <el-col :span="2">
                     <strong>{{ book.id }}</strong>
                 </el-col>
                 <el-col :span="4">
-                    {{ book.title }}
+                    {{ displayName(book.title) }}
                 </el-col>
                 <el-col :span="4">
                     <i>{{ book.price }}</i> $
                 </el-col>
                 <el-col :span="4">
-                    {{ book.user.name }}
+                    {{ displayName(book.user.name) }}
                 </el-col>
                 <el-col :span="10">
-                    <el-button type="primary" @click="viewBook(book.id)">View</el-button>
-                    <el-button type="danger" @click="removeBook(index)">Remove</el-button>
+                    <el-button type="primary" @click="viewBook(book.id)"><i class="el-icon-view"></i></el-button>
+                    <el-button type="danger" @click="removeBook(index)"><i class="el-icon-remove"></i></el-button>
                 </el-col>
             </el-row>
 
@@ -65,6 +65,13 @@
             }
         },
         methods: {
+            displayName (str) {
+                if (str.length > 10) {
+                    return `${str.substr(0, 6)}...`
+                }
+
+                return str
+            },
             buy () {
                 if (! this.authToken) {
                     this.$notify.error({
@@ -90,6 +97,10 @@
 </script>
 
 <style scoped>
+    .align-vertical {
+        line-height: 40px;
+    }
+
     .buy-btn {
         width: 100%;
     }

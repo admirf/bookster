@@ -5,8 +5,11 @@ import App from './pages/App'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import Register from './pages/Register'
+import Transaction from './pages/Transaction'
+import User from './pages/User'
 import Search from './pages/Search'
 import Book from './pages/Book'
+import Account from './pages/Account'
 import Cart from './pages/Cart'
 import Results from './pages/Results'
 import ElementUI from 'element-ui';
@@ -24,6 +27,21 @@ const router = new VueRouter({
             path: '/',
             name: 'search',
             component: Search,
+        },
+        {
+            path: '/user/:id',
+            name: 'user',
+            component: User
+        },
+        {
+            path: '/account',
+            name: 'account',
+            component: Account
+        },
+        {
+            path: '/transaction/:id',
+            name: 'transaction',
+            component: Transaction
         },
         {
             path: '/cart',

@@ -7,7 +7,7 @@ export default {
                     setTimeout(() => {
                         vueInstance.$notify.error({
                             title: 'Error',
-                            message: messages[key][i],
+                            message: messages[key][i]
                         });
                     }, 100)
                 }
@@ -17,6 +17,16 @@ export default {
         if (error.response && error.response.status === 404) {
             vueInstance.$router.push({
                 name: 'not-found'
+            })
+        }
+
+        if (error.response && error.response.status === 401) {
+            vueInstance.$notify.error({
+                title: 'Error',
+                message: 'You have to login again'
+            })
+            vueInstance.$router.push({
+                name: 'login'
             })
         }
     }

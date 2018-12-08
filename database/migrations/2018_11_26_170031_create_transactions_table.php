@@ -15,17 +15,11 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('book_id');
             $table->unsignedInteger('buyer_id');
             $table->unsignedInteger('credits');
             $table->boolean('completed')->default(false);
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();
-
-            $table->foreign('book_id')
-                ->references('id')
-                ->on('books')
-                ->onDelete('cascade');
 
             $table->foreign('buyer_id')
                 ->references('id')

@@ -8,7 +8,8 @@ class UsersTableSeeder extends Seeder
     {
         $admin = App\User::create([
             'name' => 'admin',
-            'email' => 'admin@misijaweb.com',
+            'email' => 'admin@mail.com',
+            'address' => 'unknown',
             'password' => 'secret'
         ]);
         $admin->assignRole('admin');
