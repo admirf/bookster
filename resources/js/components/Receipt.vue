@@ -1,7 +1,13 @@
 <template>
-    <div class="box">
+    <div>
+        <div v-if="! this.cart.length">
+            <h2>Nothing in the Cart</h2>
+        </div>
+        <div v-else class="box">
 
+        </div>
     </div>
+
 </template>
 
 <script>

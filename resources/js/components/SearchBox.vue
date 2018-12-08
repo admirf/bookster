@@ -2,7 +2,7 @@
     <div @keyup.enter="setQuery">
         <el-row :gutter="20">
             <el-col :xs="24" :span="18">
-                <el-input class="my-input" v-model="query" placeholder="Search..." clearable></el-input>
+                <el-input class="my-input" v-model="input" placeholder="Search..." clearable></el-input>
             </el-col>
             <el-col :xs="24" :span="6">
                 <el-button type="primary" class="my-btn" @click="setQuery">Search</el-button>
@@ -16,14 +16,22 @@
 
     export default {
         name: "SearchBox",
+        data () {
+            return {
+                input: ''
+            }
+        },
         computed: {
             ...mapGetters({
                 query: 'getQuery'
             })
         },
+        created () {
+            this.input = this.query
+        },
         methods: {
             setQuery () {
-                this.$store.commit('setQuery', this.query)
+                this.$store.commit('setQuery', this.input)
             }
         }
     }

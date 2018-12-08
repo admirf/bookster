@@ -24485,12 +24485,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SearchBox",
+  data: function data() {
+    return {
+      input: ''
+    };
+  },
   computed: _objectSpread({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
     query: 'getQuery'
   })),
+  created: function created() {
+    this.input = this.query;
+  },
   methods: {
     setQuery: function setQuery() {
-      this.$store.commit('setQuery', this.query);
+      this.$store.commit('setQuery', this.input);
     }
   }
 });
@@ -24531,11 +24539,11 @@ var render = function() {
                 staticClass: "my-input",
                 attrs: { placeholder: "Search...", clearable: "" },
                 model: {
-                  value: _vm.query,
+                  value: _vm.input,
                   callback: function($$v) {
-                    _vm.query = $$v
+                    _vm.input = $$v
                   },
-                  expression: "query"
+                  expression: "input"
                 }
               })
             ],
@@ -68485,6 +68493,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Receipt",
@@ -68501,7 +68515,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "box" })
+  return _c("div", [
+    !this.cart.length
+      ? _c("div", [_c("h2", [_vm._v("Nothing in the Cart")])])
+      : _c("div", { staticClass: "box" })
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
