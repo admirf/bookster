@@ -21,7 +21,7 @@
                 </div>
             </el-col>
             <el-col :span="6">
-                <el-button type="primary" class="my-btn">Buy</el-button>
+                <el-button type="primary" class="my-btn" @click="handleBuy">Buy</el-button>
             </el-col>
         </el-row>
 
@@ -34,6 +34,16 @@
         props: {
             book: {
                 required: true
+            }
+        },
+        methods: {
+            handleBuy () {
+                this.$store.dispatch('addToCart', this.book).then(() => {
+                    this.$notify.success({
+                        title: 'Success',
+                        message: `Item ID: ${this.book.id} added to Cart.`,
+                    })
+                })
             }
         }
     }

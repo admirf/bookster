@@ -1,11 +1,13 @@
 <template>
-    <div class="search-box" @keyup.enter="search">
-        <h2 class="search-text">Search for Books</h2>
-        <p>
-            Bookster is a clever sell and buy platform for books.
-        </p>
-        <el-input v-model="query" class="search-input" placeholder="Harry Potter..." clearable />
-        <el-button type="primary" class="search-btn" @click="search">Search</el-button>
+    <div class="search-container">
+        <div class="search-box" @keyup.enter="search">
+            <h2 class="search-text">Search for Books</h2>
+            <p>
+                Bookster is a clever sell and buy platform for books.
+            </p>
+            <el-input v-model="query" class="search-input" placeholder="Harry Potter..." clearable />
+            <el-button type="primary" class="search-btn" @click="search">Search</el-button>
+        </div>
     </div>
 </template>
 
@@ -27,14 +29,19 @@
 </script>
 
 <style scoped>
+    .search-container {
+        display: flex;
+        justify-content: center;
+    }
+
     .search-text {
         text-align: center;
     }
 
     .search-box {
-        margin: 20px 15% 20px 15%;
         padding: 20px 20px 20px 20px;
         background-color: white;
+        width: 500px;
     }
 
     .search-btn {
@@ -53,17 +60,17 @@
         text-align: center;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media screen and (max-width: 600px) {
+        .search-box {
+            width: 100%;
+        }
+
         .search-input {
-            width: auto;
+            width: 100%;
         }
 
         .search-btn {
             width: 100%;
-        }
-
-        .search-box {
-            margin: 0;
         }
     }
 </style>

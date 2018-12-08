@@ -22180,7 +22180,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.login-text[data-v-3b6adb30] {\n    text-align: center;\n}\n.login-box[data-v-3b6adb30] {\n    margin: 20px 15% 20px 15%;\n    padding: 20px 20px 20px 20px;\n    background-color: white;\n}\n.login-btn[data-v-3b6adb30] {\n    width: 350px;\n    display: block;\n    margin: 0 auto 20px auto;\n}\n.login-input[data-v-3b6adb30] {\n    width: 350px;\n    display: block;\n    margin: 20px auto 20px auto;\n}\n", ""]);
+exports.push([module.i, "\n.login-container[data-v-3b6adb30] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n.login-text[data-v-3b6adb30] {\n    text-align: center;\n}\n.login-box[data-v-3b6adb30] {\n    padding: 20px 20px 20px 20px;\n    background-color: white;\n    width: 500px;\n}\n.login-btn[data-v-3b6adb30] {\n    width: 350px;\n    display: block;\n    margin: 0 auto 20px auto;\n}\n.login-input[data-v-3b6adb30] {\n    width: 350px;\n    display: block;\n    margin: 20px auto 20px auto;\n}\n@media screen and (max-width: 600px) {\n.login-box[data-v-3b6adb30] {\n        margin-left: 0;\n        margin-right: 0;\n        width: 100%;\n}\n.login-input[data-v-3b6adb30] {\n        width: 100%;\n}\n.login-btn[data-v-3b6adb30] {\n        width: 100%;\n}\n}\n", ""]);
 
 // exports
 
@@ -22194,6 +22194,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_errorHandler__ = __webpack_require__(15);
+//
+//
 //
 //
 //
@@ -22242,61 +22244,63 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "login-box",
-      on: {
-        keyup: function($event) {
-          if (
-            !("button" in $event) &&
-            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-          ) {
-            return null
+  return _c("div", { staticClass: "login-container" }, [
+    _c(
+      "div",
+      {
+        staticClass: "login-box",
+        on: {
+          keyup: function($event) {
+            if (
+              !("button" in $event) &&
+              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+            ) {
+              return null
+            }
+            return _vm.login($event)
           }
-          return _vm.login($event)
         }
-      }
-    },
-    [
-      _c("h2", { staticClass: "login-text" }, [_vm._v("Sign In")]),
-      _vm._v(" "),
-      _c("el-input", {
-        staticClass: "login-input",
-        attrs: { placeholder: "Email", clearable: "" },
-        model: {
-          value: _vm.signInForm.email,
-          callback: function($$v) {
-            _vm.$set(_vm.signInForm, "email", $$v)
+      },
+      [
+        _c("h2", { staticClass: "login-text" }, [_vm._v("Sign In")]),
+        _vm._v(" "),
+        _c("el-input", {
+          staticClass: "login-input",
+          attrs: { placeholder: "Email", clearable: "" },
+          model: {
+            value: _vm.signInForm.email,
+            callback: function($$v) {
+              _vm.$set(_vm.signInForm, "email", $$v)
+            },
+            expression: "signInForm.email"
+          }
+        }),
+        _vm._v(" "),
+        _c("el-input", {
+          staticClass: "login-input",
+          attrs: { type: "password", placeholder: "Password", clearable: "" },
+          model: {
+            value: _vm.signInForm.password,
+            callback: function($$v) {
+              _vm.$set(_vm.signInForm, "password", $$v)
+            },
+            expression: "signInForm.password"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "el-button",
+          {
+            staticClass: "login-btn",
+            attrs: { type: "primary" },
+            on: { click: _vm.login }
           },
-          expression: "signInForm.email"
-        }
-      }),
-      _vm._v(" "),
-      _c("el-input", {
-        staticClass: "login-input",
-        attrs: { type: "password", placeholder: "Password", clearable: "" },
-        model: {
-          value: _vm.signInForm.password,
-          callback: function($$v) {
-            _vm.$set(_vm.signInForm, "password", $$v)
-          },
-          expression: "signInForm.password"
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "el-button",
-        {
-          staticClass: "login-btn",
-          attrs: { type: "primary" },
-          on: { click: _vm.login }
-        },
-        [_vm._v("Sign Up")]
-      )
-    ],
-    1
-  )
+          [_vm._v("Sign Up")]
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -22532,7 +22536,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.register-text[data-v-364a2fac] {\n    text-align: center;\n}\n.register-box[data-v-364a2fac] {\n    margin: 20px 15% 20px 15%;\n    padding: 20px 20px 20px 20px;\n    background-color: white;\n}\n.register-btn[data-v-364a2fac] {\n    width: 350px;\n    display: block;\n    margin: 0 auto 20px auto;\n}\n.register-input[data-v-364a2fac] {\n    width: 350px;\n    display: block;\n    margin: 20px auto 20px auto;\n}\n", ""]);
+exports.push([module.i, "\n.register-container[data-v-364a2fac] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n.register-text[data-v-364a2fac] {\n    text-align: center;\n}\n.register-box[data-v-364a2fac] {\n    padding: 20px 20px 20px 20px;\n    background-color: white;\n    width: 500px;\n}\n.register-btn[data-v-364a2fac] {\n    width: 350px;\n    display: block;\n    margin: 0 auto 20px auto;\n}\n.register-input[data-v-364a2fac] {\n    width: 350px;\n    display: block;\n    margin: 20px auto 20px auto;\n}\n@media screen and (max-width: 600px) {\n.register-box[data-v-364a2fac] {\n        margin-left: 0;\n        margin-right: 0;\n        width: 100%;\n}\n.register-input[data-v-364a2fac] {\n        width: 100%;\n}\n.register-btn[data-v-364a2fac] {\n        width: 100%;\n}\n}\n", ""]);
 
 // exports
 
@@ -22546,6 +22550,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_errorHandler__ = __webpack_require__(15);
+//
+//
 //
 //
 //
@@ -22594,89 +22600,93 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "register-box",
-      on: {
-        keyup: function($event) {
-          if (
-            !("button" in $event) &&
-            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-          ) {
-            return null
+  return _c("div", { staticClass: "register-container" }, [
+    _c(
+      "div",
+      {
+        staticClass: "register-box",
+        on: {
+          keyup: function($event) {
+            if (
+              !("button" in $event) &&
+              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+            ) {
+              return null
+            }
+            return _vm.register($event)
           }
-          return _vm.register($event)
         }
-      }
-    },
-    [
-      _c("h2", { staticClass: "register-text" }, [_vm._v("Create an Account")]),
-      _vm._v(" "),
-      _c("el-input", {
-        staticClass: "register-input",
-        attrs: { placeholder: "User Name", clearable: "" },
-        model: {
-          value: _vm.signUpForm.name,
-          callback: function($$v) {
-            _vm.$set(_vm.signUpForm, "name", $$v)
+      },
+      [
+        _c("h2", { staticClass: "register-text" }, [
+          _vm._v("Create an Account")
+        ]),
+        _vm._v(" "),
+        _c("el-input", {
+          staticClass: "register-input",
+          attrs: { placeholder: "User Name", clearable: "" },
+          model: {
+            value: _vm.signUpForm.name,
+            callback: function($$v) {
+              _vm.$set(_vm.signUpForm, "name", $$v)
+            },
+            expression: "signUpForm.name"
+          }
+        }),
+        _vm._v(" "),
+        _c("el-input", {
+          staticClass: "register-input",
+          attrs: { placeholder: "Email", clearable: "" },
+          model: {
+            value: _vm.signUpForm.email,
+            callback: function($$v) {
+              _vm.$set(_vm.signUpForm, "email", $$v)
+            },
+            expression: "signUpForm.email"
+          }
+        }),
+        _vm._v(" "),
+        _c("el-input", {
+          staticClass: "register-input",
+          attrs: { type: "password", placeholder: "Password", clearable: "" },
+          model: {
+            value: _vm.signUpForm.password,
+            callback: function($$v) {
+              _vm.$set(_vm.signUpForm, "password", $$v)
+            },
+            expression: "signUpForm.password"
+          }
+        }),
+        _vm._v(" "),
+        _c("el-input", {
+          staticClass: "register-input",
+          attrs: {
+            type: "password",
+            placeholder: "Repeat Password",
+            clearable: ""
           },
-          expression: "signUpForm.name"
-        }
-      }),
-      _vm._v(" "),
-      _c("el-input", {
-        staticClass: "register-input",
-        attrs: { placeholder: "Email", clearable: "" },
-        model: {
-          value: _vm.signUpForm.email,
-          callback: function($$v) {
-            _vm.$set(_vm.signUpForm, "email", $$v)
+          model: {
+            value: _vm.signUpForm.password_confirmation,
+            callback: function($$v) {
+              _vm.$set(_vm.signUpForm, "password_confirmation", $$v)
+            },
+            expression: "signUpForm.password_confirmation"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "el-button",
+          {
+            staticClass: "register-btn",
+            attrs: { type: "primary" },
+            on: { click: _vm.register }
           },
-          expression: "signUpForm.email"
-        }
-      }),
-      _vm._v(" "),
-      _c("el-input", {
-        staticClass: "register-input",
-        attrs: { type: "password", placeholder: "Password", clearable: "" },
-        model: {
-          value: _vm.signUpForm.password,
-          callback: function($$v) {
-            _vm.$set(_vm.signUpForm, "password", $$v)
-          },
-          expression: "signUpForm.password"
-        }
-      }),
-      _vm._v(" "),
-      _c("el-input", {
-        staticClass: "register-input",
-        attrs: {
-          type: "password",
-          placeholder: "Repeat Password",
-          clearable: ""
-        },
-        model: {
-          value: _vm.signUpForm.password_confirmation,
-          callback: function($$v) {
-            _vm.$set(_vm.signUpForm, "password_confirmation", $$v)
-          },
-          expression: "signUpForm.password_confirmation"
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "el-button",
-        {
-          staticClass: "register-btn",
-          attrs: { type: "primary" },
-          on: { click: _vm.register }
-        },
-        [_vm._v("Sign Up")]
-      )
-    ],
-    1
-  )
+          [_vm._v("Sign Up")]
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -22774,7 +22784,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.search-text[data-v-7262a471] {\n    text-align: center;\n}\n.search-box[data-v-7262a471] {\n    margin: 20px 15% 20px 15%;\n    padding: 20px 20px 20px 20px;\n    background-color: white;\n}\n.search-btn[data-v-7262a471] {\n    width: 350px;\n    display: block;\n    margin: 0 auto 20px auto;\n}\n.search-input[data-v-7262a471] {\n    width: 350px;\n    display: block;\n    margin: 20px auto 20px auto;\n}\np[data-v-7262a471] {\n    text-align: center;\n}\n@media only screen and (max-width: 600px) {\n.search-input[data-v-7262a471] {\n        width: auto;\n}\n.search-btn[data-v-7262a471] {\n        width: 100%;\n}\n.search-box[data-v-7262a471] {\n        margin: 0;\n}\n}\n", ""]);
+exports.push([module.i, "\n.search-container[data-v-7262a471] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n.search-text[data-v-7262a471] {\n    text-align: center;\n}\n.search-box[data-v-7262a471] {\n    padding: 20px 20px 20px 20px;\n    background-color: white;\n    width: 500px;\n}\n.search-btn[data-v-7262a471] {\n    width: 350px;\n    display: block;\n    margin: 0 auto 20px auto;\n}\n.search-input[data-v-7262a471] {\n    width: 350px;\n    display: block;\n    margin: 20px auto 20px auto;\n}\np[data-v-7262a471] {\n    text-align: center;\n}\n@media screen and (max-width: 600px) {\n.search-box[data-v-7262a471] {\n        width: 100%;\n}\n.search-input[data-v-7262a471] {\n        width: 100%;\n}\n.search-btn[data-v-7262a471] {\n        width: 100%;\n}\n}\n", ""]);
 
 // exports
 
@@ -22785,6 +22795,8 @@ exports.push([module.i, "\n.search-text[data-v-7262a471] {\n    text-align: cent
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -22819,55 +22831,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "search-box",
-      on: {
-        keyup: function($event) {
-          if (
-            !("button" in $event) &&
-            _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-          ) {
-            return null
+  return _c("div", { staticClass: "search-container" }, [
+    _c(
+      "div",
+      {
+        staticClass: "search-box",
+        on: {
+          keyup: function($event) {
+            if (
+              !("button" in $event) &&
+              _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+            ) {
+              return null
+            }
+            return _vm.search($event)
           }
-          return _vm.search($event)
         }
-      }
-    },
-    [
-      _c("h2", { staticClass: "search-text" }, [_vm._v("Search for Books")]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "\n        Bookster is a clever sell and buy platform for books.\n    "
-        )
-      ]),
-      _vm._v(" "),
-      _c("el-input", {
-        staticClass: "search-input",
-        attrs: { placeholder: "Harry Potter...", clearable: "" },
-        model: {
-          value: _vm.query,
-          callback: function($$v) {
-            _vm.query = $$v
+      },
+      [
+        _c("h2", { staticClass: "search-text" }, [_vm._v("Search for Books")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "\n            Bookster is a clever sell and buy platform for books.\n        "
+          )
+        ]),
+        _vm._v(" "),
+        _c("el-input", {
+          staticClass: "search-input",
+          attrs: { placeholder: "Harry Potter...", clearable: "" },
+          model: {
+            value: _vm.query,
+            callback: function($$v) {
+              _vm.query = $$v
+            },
+            expression: "query"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "el-button",
+          {
+            staticClass: "search-btn",
+            attrs: { type: "primary" },
+            on: { click: _vm.search }
           },
-          expression: "query"
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "el-button",
-        {
-          staticClass: "search-btn",
-          attrs: { type: "primary" },
-          on: { click: _vm.search }
-        },
-        [_vm._v("Search")]
-      )
-    ],
-    1
-  )
+          [_vm._v("Search")]
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -23144,6 +23158,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     book: {
       required: true
     }
+  },
+  methods: {
+    handleBuy: function handleBuy() {
+      var _this = this;
+
+      this.$store.dispatch('addToCart', this.book).then(function () {
+        _this.$notify.success({
+          title: 'Success',
+          message: "Item ID: ".concat(_this.book.id, " added to Cart.")
+        });
+      });
+    }
   }
 });
 
@@ -23198,7 +23224,11 @@ var render = function() {
                 [
                   _c(
                     "el-button",
-                    { staticClass: "my-btn", attrs: { type: "primary" } },
+                    {
+                      staticClass: "my-btn",
+                      attrs: { type: "primary" },
+                      on: { click: _vm.handleBuy }
+                    },
                     [_vm._v("Buy")]
                   )
                 ],
@@ -68283,13 +68313,146 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.box-container[data-v-7908d3ae] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 281 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Receipt__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Receipt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Receipt__);
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Basket",
+  components: {
+    Receipt: __WEBPACK_IMPORTED_MODULE_0__components_Receipt___default.a
+  }
+});
+
+/***/ }),
+/* 282 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "box-container" }, [_c("Receipt")], 1)
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7908d3ae", module.exports)
+  }
+}
+
+/***/ }),
+/* 283 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(284)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+var __vue_script__ = __webpack_require__(286)
+/* template */
+var __vue_template__ = __webpack_require__(287)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-50b3bf9d"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Receipt.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-50b3bf9d", Component.options)
+  } else {
+    hotAPI.reload("data-v-50b3bf9d", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 284 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(285);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("0552c315", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-50b3bf9d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Receipt.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-50b3bf9d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Receipt.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 285 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.box[data-v-50b3bf9d] {\n    background-color: white;\n    height: 600px;\n    width: 100%;\n}\n@media screen and (min-width: 480px) {\n.box[data-v-50b3bf9d] {\n        width: 500px;\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 286 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -68301,18 +68464,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Basket"
+  name: "Receipt"
 });
 
 /***/ }),
-/* 282 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Basket\n")])
+  return _c("div", { staticClass: "box" })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -68320,7 +68483,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7908d3ae", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-50b3bf9d", module.exports)
   }
 }
 
