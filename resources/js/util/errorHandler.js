@@ -4,10 +4,12 @@ export default {
             let messages = error.response.data.errors
             for (let key in error.response.data.errors) {
                 for (let i in messages[key]) {
-                    vueInstance.$notify.error({
-                        title: 'Error',
-                        message: messages[key][i],
-                    });
+                    setTimeout(() => {
+                        vueInstance.$notify.error({
+                            title: 'Error',
+                            message: messages[key][i],
+                        });
+                    }, 200)
                 }
             }
         }

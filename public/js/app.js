@@ -12854,16 +12854,28 @@ var index_esm = {
 /* harmony default export */ __webpack_exports__["a"] = ({
   handle: function handle(error, vueInstance) {
     if (error.response && error.response.status === 422) {
-      var messages = error.response.data.errors;
+      (function () {
+        var messages = error.response.data.errors;
 
-      for (var key in error.response.data.errors) {
-        for (var i in messages[key]) {
-          vueInstance.$notify.error({
-            title: 'Error',
-            message: messages[key][i]
-          });
+        var _loop = function _loop(key) {
+          var _loop2 = function _loop2(i) {
+            setTimeout(function () {
+              vueInstance.$notify.error({
+                title: 'Error',
+                message: messages[key][i]
+              });
+            }, 200);
+          };
+
+          for (var i in messages[key]) {
+            _loop2(i);
+          }
+        };
+
+        for (var key in error.response.data.errors) {
+          _loop(key);
         }
-      }
+      })();
     }
 
     if (error.response && error.response.status === 404) {

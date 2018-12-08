@@ -12,12 +12,14 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
+
     export default {
         name: "SearchBox",
-        data () {
-            return {
-                query: ""
-            }
+        computed: {
+            ...mapGetters({
+                query: 'getQuery'
+            })
         },
         methods: {
             setQuery () {

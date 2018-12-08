@@ -13440,16 +13440,28 @@ module.exports = function (it, key) {
 /* harmony default export */ __webpack_exports__["a"] = ({
   handle: function handle(error, vueInstance) {
     if (error.response && error.response.status === 422) {
-      var messages = error.response.data.errors;
+      (function () {
+        var messages = error.response.data.errors;
 
-      for (var key in error.response.data.errors) {
-        for (var i in messages[key]) {
-          vueInstance.$notify.error({
-            title: 'Error',
-            message: messages[key][i]
-          });
+        var _loop = function _loop(key) {
+          var _loop2 = function _loop2(i) {
+            setTimeout(function () {
+              vueInstance.$notify.error({
+                title: 'Error',
+                message: messages[key][i]
+              });
+            }, 200);
+          };
+
+          for (var i in messages[key]) {
+            _loop2(i);
+          }
+        };
+
+        for (var key in error.response.data.errors) {
+          _loop(key);
         }
-      }
+      })();
     }
 
     if (error.response && error.response.status === 404) {
@@ -23599,6 +23611,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   created: function created() {
+    this.$store.commit('setFilters', '');
     this.loadCategories();
   },
   methods: {
@@ -24451,6 +24464,11 @@ exports.push([module.i, "\n.my-btn[data-v-fefb60b0] {\n    width: 100%;\n}\n.my-
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(12);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -24464,13 +24482,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SearchBox",
-  data: function data() {
-    return {
-      query: ""
-    };
-  },
+  computed: _objectSpread({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
+    query: 'getQuery'
+  })),
   methods: {
     setQuery: function setQuery() {
       this.$store.commit('setQuery', this.query);
@@ -68446,7 +68463,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.box[data-v-50b3bf9d] {\n    background-color: white;\n    height: 600px;\n    width: 100%;\n}\n@media screen and (min-width: 480px) {\n.box[data-v-50b3bf9d] {\n        width: 500px;\n}\n}\n", ""]);
+exports.push([module.i, "\n.box[data-v-50b3bf9d] {\n    background-color: white;\n    height: 600px;\n    width: 100%;\n}\n@media screen and (min-width: 600px) {\n.box[data-v-50b3bf9d] {\n        width: 500px;\n}\n}\n", ""]);
 
 // exports
 
@@ -68457,14 +68474,23 @@ exports.push([module.i, "\n.box[data-v-50b3bf9d] {\n    background-color: white;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(12);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Receipt"
+  name: "Receipt",
+  computed: _objectSpread({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
+    cart: 'getCart'
+  }))
 });
 
 /***/ }),

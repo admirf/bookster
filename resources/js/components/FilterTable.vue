@@ -90,6 +90,7 @@
             }
         },
         created () {
+            this.$store.commit('setFilters', '')
             this.loadCategories()
         },
         methods: {

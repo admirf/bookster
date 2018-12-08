@@ -5,8 +5,15 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
+
     export default {
-        name: "Receipt"
+        name: "Receipt",
+        computed: {
+            ...mapGetters({
+                cart: 'getCart',
+            })
+        }
     }
 </script>
 
@@ -17,7 +24,7 @@
         width: 100%;
     }
 
-    @media screen and (min-width: 480px) {
+    @media screen and (min-width: 600px) {
         .box {
             width: 500px;
         }
