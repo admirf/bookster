@@ -15,7 +15,7 @@
             <div>Credits:</div>
             <div><strong>{{ transaction.credits }}</strong> $</div>
         </div>
-        <div class="row">
+        <div v-if="transaction.completed" class="row">
             <div>Completed At:</div>
             <div>{{ transaction.completed_at.date}}</div>
         </div>

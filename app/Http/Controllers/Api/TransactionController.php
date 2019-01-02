@@ -11,7 +11,7 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        return TransactionResource::collection(auth()->user()->transactions->load('books'));
+        return TransactionResource::collection(auth()->user()->latestTransactions->load('books'));
     }
 
     public function show(Transaction $transaction)
@@ -26,5 +26,7 @@ class TransactionController extends Controller
         $this->authorize('complete', $transaction);
 
         $transaction->complete();
+
+        return new TransactionResource($transaction);
     }
 }

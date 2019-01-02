@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Builder;
 class Transaction extends Model
 {
     protected $fillable = [
-        'book_id',
         'buyer_id',
         'credits',
         'completed'

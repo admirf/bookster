@@ -21,6 +21,7 @@ export default {
         }
 
         if (error.response && error.response.status === 401) {
+            vueInstance.$store.commit('setAuthToken', '')
             vueInstance.$notify.error({
                 title: 'Error',
                 message: 'You have to login again'

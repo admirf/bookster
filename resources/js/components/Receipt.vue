@@ -50,6 +50,8 @@
 
 <script>
     import { mapGetters } from 'vuex'
+    import axios from 'axios'
+    import ErrorHandler from '../util/errorHandler'
 
     export default {
         name: "Receipt",
@@ -79,6 +81,23 @@
                         message: 'You need an account to buy books'
                     })
                     this.$router.push('login')
+                } else {
+                    axios.post('/api/buy', {
+                        books: this.cart,
+                        credits: this.total
+                    }, {
+                        headers: {
+                            Authorization: `Bearer ${this.authToken}`
+                        }
+                    }).then(response => {
+                        this.$notify.success({
+                            title: 'Success',
+                            message: `Transaction ID: ${response.data.data.id} initiated successfully`,
+                        })
+                        this.$store.commit('emptyCart')
+                    }).catch(error => {
+                        ErrorHandler.handle(error, this)
+                    })
                 }
             },
             viewBook (id) {

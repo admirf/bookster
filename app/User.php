@@ -5,7 +5,6 @@ namespace App;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject
@@ -42,6 +41,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Transaction::class, 'buyer_id');
     }
 
+    public function latestTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'buyer_id')->latest();
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
@@ -51,6 +55,18 @@ class User extends Authenticatable implements JWTSubject
     {
         $this->balance += $credits;
         $this->save();
+    }
+
+    public function buy($ids, $credits)
+    {
+        $transaction = Transaction::create([
+            'buyer_id' => $this->id,
+            'credits' => $credits
+        ]);
+
+        $transaction->books()->attach($ids);
+
+        return $transaction;
     }
 
     /**

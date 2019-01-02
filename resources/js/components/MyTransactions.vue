@@ -9,7 +9,7 @@
             <div>Completed: <span :class="colorBoolean(transaction.completed)">{{ transaction.completed }}</span></div>
             <div>
                 <el-button type="primary" @click="goToTransaction(transaction.id)"><i class="el-icon-view"></i></el-button>
-                <el-button type="success">Complete</el-button>
+                <el-button type="success" @click="complete(transaction.id, index)" :disabled="transaction.completed">Complete</el-button>
             </div>
         </div>
     </div>
@@ -44,6 +44,21 @@
             })
         },
         methods: {
+            complete (id, index) {
+                axios.get(`/api/transactions/${id}/complete`, {
+                    headers: {
+                        Authorization: `Bearer ${this.authToken}`
+                    }
+                }).then(response => {
+                    this.$notify.success({
+                        title: 'Success',
+                        message: `Transaction ID: ${id} completed successfully.`
+                    })
+                    this.$set(this.transactions, index, response.data.data)
+                }).catch(error => {
+                    ErrorHandler.handle(error)
+                })
+            },
             goToTransaction (id) {
                 this.$router.push({
                     name: 'transaction',
