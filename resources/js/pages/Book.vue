@@ -1,6 +1,6 @@
 <template>
     <div class="outer">
-        <BookDetails :book="book"></BookDetails>
+        <BookDetails class="details" :book="book"></BookDetails>
     </div>
 </template>
 
@@ -30,14 +30,11 @@
 </script>
 
 <style scoped>
-    .outer {
-        padding-left: 20%;
-        padding-right: 20%;
+    .details {
+        width: 400px;
     }
-
-    @media only screen and (max-width: 786px) {
-        .outer {
-            padding: 0;
-        }
+    .outer {
+        display: flex;
+        justify-content: center;
     }
 </style>

@@ -1,29 +1,33 @@
 <template>
     <div class="book-details" v-if="book">
-        <el-carousel type="card" height="200px">
-            <el-carousel-item v-for="media in book.media" :key="media.id">
-                <img :src="media.url" />
-            </el-carousel-item>
-        </el-carousel>
+        <div v-show="book.media.length > 0">
+            <el-carousel type="card" height="200px">
+                <el-carousel-item v-for="media in book.media" :key="media.id">
+                    <img :src="media.url" />
+                </el-carousel-item>
+            </el-carousel>
+        </div>
+
 
         <br>
-        {{ book.title }}
+        <h3>{{ book.title }}</h3>
         <br>
-        {{ book.author }}
+        <em>{{ book.author }}</em>
         <br>
+        <br>
+        <router-link :to="`/user/${book.user.id}`">{{ book.user.name }}</router-link>
+        <br>
+        <br>
+        <hr>
 
-        <br>
-
-        <el-row :gutter="20">
-            <el-col :span="18">
-                <div class="left">
-                    {{ book.price }} $
-                </div>
-            </el-col>
-            <el-col :span="6">
+        <div class="cont">
+            <div class="price">
+                <strong>{{ book.price }} $</strong>
+            </div>
+            <div class="right-btn">
                 <el-button type="primary" class="my-btn" @click="handleBuy">Buy</el-button>
-            </el-col>
-        </el-row>
+            </div>
+        </div>
 
     </div>
 </template>
@@ -50,6 +54,28 @@
 </script>
 
 <style scoped>
+    hr {
+        margin-bottom: 0;
+    }
+
+    .price {
+        color: green;
+        display: flex;
+        align-items: center;
+        margin: 5px;
+    }
+
+    .right-btn {
+        width: 100px;
+        padding: 5px;
+    }
+
+    .cont {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
     img {
         max-width: 100%;
     }
@@ -57,12 +83,6 @@
     .book-details {
         background-color: white;
         text-align: center;
-    }
-
-    .left {
-        text-align: left;
-        padding-top: 7px;
-        padding-left: 7px;
     }
 
     .my-btn {

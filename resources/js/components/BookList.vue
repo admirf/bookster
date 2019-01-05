@@ -1,6 +1,6 @@
 <template>
     <div :class="addStyle">
-        <div class="items" v-loading.fullscreen.lock="loading">
+        <div class="items" v-loading="loading" :class="loading ? 'loader': ''">
             <div class="item" v-for="book in books">
                 <BookCard :book="book"></BookCard>
             </div>
@@ -89,6 +89,10 @@
 </script>
 
 <style scoped>
+    .loader {
+        margin-top: 50px;
+    }
+
     .book-box {
         border: 1px solid #C0C4CC;
         background-color: white;
