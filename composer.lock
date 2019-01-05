@@ -2679,16 +2679,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.5.2",
+            "version": "7.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "6e5e355ecb262875320904f57c06dbe332eb3d36"
+                "reference": "a50e59d1eec7c2e161942ffd0d13860759e4760d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/6e5e355ecb262875320904f57c06dbe332eb3d36",
-                "reference": "6e5e355ecb262875320904f57c06dbe332eb3d36",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/a50e59d1eec7c2e161942ffd0d13860759e4760d",
+                "reference": "a50e59d1eec7c2e161942ffd0d13860759e4760d",
                 "shasum": ""
             },
             "require": {
@@ -2758,7 +2758,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2018-11-19T17:16:59+00:00"
+            "time": "2019-01-05T14:06:46+00:00"
         },
         {
             "name": "spatie/laravel-permission",
@@ -4160,16 +4160,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v2.5.1",
+            "version": "v2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e"
+                "reference": "cfd5dc225767ca154853752abc93aeec040fcf36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e",
-                "reference": "8abb4f9aa89ddea9d52112c65bbe8d0125e2fa8e",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/cfd5dc225767ca154853752abc93aeec040fcf36",
+                "reference": "cfd5dc225767ca154853752abc93aeec040fcf36",
                 "shasum": ""
             },
             "require": {
@@ -4206,7 +4206,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2018-07-29T20:33:41+00:00"
+            "time": "2018-10-30T17:29:25+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",

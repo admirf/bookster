@@ -65,6 +65,8 @@ class User extends Authenticatable implements JWTSubject
         ]);
 
         $transaction->books()->attach($ids);
+        $this->attributes['balance'] -= $credits;
+        $this->save();
 
         return $transaction;
     }
