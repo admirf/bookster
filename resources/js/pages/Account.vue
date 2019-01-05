@@ -4,11 +4,13 @@
             <el-tab-pane label="Settings" name="credits"></el-tab-pane>
             <el-tab-pane label="Transactions" name="transactions"></el-tab-pane>
             <el-tab-pane label="Books" name="books"></el-tab-pane>
+            <el-tab-pane label="Report" name="reports"></el-tab-pane>
         </el-tabs>
         <div class="acc-container">
             <Credits v-show="activeName === 'credits'" />
             <MyTransactions v-show="activeName === 'transactions'" />
             <div v-show="activeName === 'books'">test</div>
+            <Report v-show="activeName === 'reports'" />
         </div>
     </div>
 
@@ -17,12 +19,14 @@
 <script>
     import MyTransactions from '../components/MyTransactions'
     import Credits from '../components/Credits'
+    import Report from '../components/Report'
 
     export default {
         name: "Account",
         components: {
             MyTransactions,
-            Credits
+            Credits,
+            Report
         },
         data () {
             return {

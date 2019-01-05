@@ -16,6 +16,7 @@ class ReportResource extends JsonResource
     {
         return [
             'type' => 'report',
+            'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
             'user' => new UserResource($this->whenLoaded('user'))

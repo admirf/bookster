@@ -12718,46 +12718,65 @@ var index_esm = {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
   handle: function handle(error, vueInstance) {
-    if (error.response && error.response.status === 422) {
+    if (error.response) {
       (function () {
-        var messages = error.response.data.errors;
+        switch (error.response.status) {
+          case 422:
+            var messages = error.response.data.errors;
 
-        var _loop = function _loop(key) {
-          var _loop2 = function _loop2(i) {
-            setTimeout(function () {
-              vueInstance.$notify.error({
-                title: 'Error',
-                message: messages[key][i]
-              });
-            }, 100);
-          };
+            var _loop = function _loop(key) {
+              var _loop2 = function _loop2(i) {
+                setTimeout(function () {
+                  vueInstance.$notify.error({
+                    title: 'Error',
+                    message: messages[key][i]
+                  });
+                }, 100);
+              };
 
-          for (var i in messages[key]) {
-            _loop2(i);
-          }
-        };
+              for (var i in messages[key]) {
+                _loop2(i);
+              }
+            };
 
-        for (var key in error.response.data.errors) {
-          _loop(key);
+            for (var key in error.response.data.errors) {
+              _loop(key);
+            }
+
+            break;
+
+          case 404:
+            vueInstance.$router.push({
+              name: 'not-found'
+            });
+            break;
+
+          case 401:
+            vueInstance.$store.commit('setAuthToken', '');
+            vueInstance.$notify.error({
+              title: 'Error',
+              message: 'You have to login again'
+            });
+            vueInstance.$router.push({
+              name: 'login'
+            });
+            break;
+
+          case 500:
+            vueInstance.$notify.error({
+              title: 'Error',
+              message: 'Server Error'
+            });
+            break;
+
+          default:
+            vueInstance.$notify.error({
+              title: 'Error',
+              message: 'Unknown Error'
+            });
+            break;
         }
       })();
-    }
-
-    if (error.response && error.response.status === 404) {
-      vueInstance.$router.push({
-        name: 'not-found'
-      });
-    }
-
-    if (error.response && error.response.status === 401) {
-      vueInstance.$store.commit('setAuthToken', '');
-      vueInstance.$notify.error({
-        title: 'Error',
-        message: 'You have to login again'
-      });
-      vueInstance.$router.push({
-        name: 'login'
-      });
     }
   }
 });
@@ -14816,6 +14835,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -14917,6 +14937,14 @@ var render = function() {
                 "el-menu-item",
                 { staticClass: "right", attrs: { index: "/account" } },
                 [_vm._v("Account")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.authToken
+            ? _c(
+                "el-menu-item",
+                { staticClass: "right", attrs: { index: "/create-book" } },
+                [_c("i", { staticClass: "el-icon-plus" })]
               )
             : _vm._e()
         ],

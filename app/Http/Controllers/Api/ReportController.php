@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Report;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ReportResource;
@@ -24,10 +25,9 @@ class ReportController extends Controller
         $attributes = $this->validate($request, [
             'title' => 'required|string',
             'content' => 'required|string',
-            'user_id' => 'required|integer|exists:user,id'
         ]);
 
-        $report = Report::create($attributes);
+        $report = $request->user()->reports()->create($attributes);
 
         return new ReportResource($report->load('user'));
     }

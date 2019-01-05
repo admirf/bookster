@@ -9,6 +9,7 @@ import Transaction from './pages/Transaction'
 import User from './pages/User'
 import Search from './pages/Search'
 import Book from './pages/Book'
+import CreateBook from './pages/CreateBook'
 import Account from './pages/Account'
 import Cart from './pages/Cart'
 import Results from './pages/Results'
@@ -67,6 +68,11 @@ const router = new VueRouter({
             path: '/book/:id',
             name: 'book',
             component: Book,
+        },
+        {
+            path: '/create-book',
+            name: 'create-book',
+            component: CreateBook,
         },
         {
             path: '/not-found',

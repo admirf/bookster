@@ -31,6 +31,11 @@ class User extends Authenticatable implements JWTSubject
         'updated_at',
     ];
 
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+
     public function books()
     {
         return $this->hasMany(Book::class);
