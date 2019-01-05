@@ -25,6 +25,10 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'delete categories']);
         Permission::create(['name' => 'edit categories']);
 
+        Permission::create(['name' => 'view reports']);
+        Permission::create(['name' => 'create reports']);
+        Permission::create(['name' => 'delete reports']);
+
         Permission::create(['name' => 'view transactions']);
         Permission::create(['name' => 'complete transactions']);
 
@@ -36,7 +40,8 @@ class RolesAndPermissionsSeeder extends Seeder
         $role = Role::create(['name' => 'user']);
         $role->givePermissionTo([
             'create books', 'delete books', 'edit books',
-            'view transactions', 'complete transactions'
+            'view transactions', 'complete transactions',
+            'create reports'
         ]);
     }
 }

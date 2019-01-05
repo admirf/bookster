@@ -34,6 +34,11 @@ Route::namespace('Api')->group(function () {
     Route::put('/categories/{category}', 'CategoryController@update')->middleware(['auth:api', 'permission:edit categories']);
     Route::delete('/categories/{category}', 'CategoryController@destroy')->middleware(['auth:api', 'permission:delete categories']);
 
+    Route::get('/reports', 'ReportController@index')->middleware(['auth:api', 'permission:view reports']);
+    Route::get('/reports/{reports}', 'ReportController@show')->middleware(['auth:api', 'permission:view reports']);
+    Route::post('/reports', 'ReportController@store')->middleware(['auth:api', 'permission:create reports']);
+    Route::delete('/reports/{reports}', 'ReportController@destroy')->middleware(['auth:api', 'permission:delete reports']);
+
     Route::get('/books', 'BookController@index');
     Route::get('/search', 'BookSearchController');
     Route::get('/books/{book}', 'BookController@show');
