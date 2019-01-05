@@ -70994,7 +70994,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.loadCategories();
   },
   methods: {
-    handleFile: function handleFile() {},
+    uploadImage: function uploadImage() {
+      var formData = new FormData();
+      formData.append();
+    },
+    handleFile: function handleFile() {
+      this.image = this.$refs.file.files[0];
+    },
     submit: function submit() {
       if (this.mode === 'create') {
         this.store();
@@ -71210,7 +71216,11 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "horizontal-spacer" }),
           _vm._v(" "),
-          _c("el-button", { attrs: { type: "primary" } }, [_vm._v("Upload")])
+          _c(
+            "el-button",
+            { attrs: { type: "primary" }, on: { click: _vm.uploadImage } },
+            [_vm._v("Upload")]
+          )
         ],
         1
       )

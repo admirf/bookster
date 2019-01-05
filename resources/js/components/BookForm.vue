@@ -31,9 +31,9 @@
         <label>Add an Image</label>
         <div class="vertical-spacer"></div>
         <div class="flex-container">
-            <input ref="file" v-on:change="handleFile"" class="file-input" type="file" />
+            <input ref="file" v-on:change="handleFile" class="file-input" type="file" />
             <div class="horizontal-spacer"></div>
-            <el-button type="primary">Upload</el-button>
+            <el-button type="primary" @click="uploadImage">Upload</el-button>
         </div>
     </div>
 </template>
@@ -76,8 +76,12 @@
             this.loadCategories()
         },
         methods: {
-            handleFile() {
-
+            uploadImage () {
+                let formData = new FormData()
+                formData.append()
+            },
+            handleFile () {
+                this.image = this.$refs.file.files[0];
             },
             submit () {
                 if (this.mode === 'create') {
