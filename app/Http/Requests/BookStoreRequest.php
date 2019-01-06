@@ -19,6 +19,7 @@ class BookStoreRequest extends FormRequest
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'available' => 'sometimes|boolean',
             'isbn' => 'nullable|string|max:255',
             'edition' => 'nullable|string',
             'num_of_pages' => 'nullable|integer',

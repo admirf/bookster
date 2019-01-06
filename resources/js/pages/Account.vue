@@ -9,7 +9,7 @@
         <div class="acc-container">
             <Credits v-show="activeName === 'credits'" />
             <MyTransactions v-show="activeName === 'transactions'" />
-            <div v-show="activeName === 'books'">test</div>
+            <MyBooks v-show="activeName === 'books'" />
             <Report v-show="activeName === 'reports'" />
         </div>
     </div>
@@ -18,6 +18,7 @@
 
 <script>
     import MyTransactions from '../components/MyTransactions'
+    import MyBooks from '../components/MyBooks'
     import Credits from '../components/Credits'
     import Report from '../components/Report'
 
@@ -25,6 +26,7 @@
         name: "Account",
         components: {
             MyTransactions,
+            MyBooks,
             Credits,
             Report
         },

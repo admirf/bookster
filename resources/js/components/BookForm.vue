@@ -11,6 +11,13 @@
         <div class="vertical-spacer"></div>
 
         <div class="flex-container">
+            <el-checkbox class="check-box" v-model="form.available">Available</el-checkbox>
+            <div class="horizontal-spacer-max"></div>
+            <el-input-number class="fixed-width-input-number" v-model="form.num_of_pages" placeholder="Pages..."></el-input-number>
+        </div>
+        <div class="vertical-spacer"></div>
+
+        <div class="flex-container">
             <el-select v-model="form.category_id" placeholder="Category...">
                 <el-option v-for="category in categories" :key="category.id" :value="category.id" :label="category.name"></el-option>
             </el-select>
@@ -22,7 +29,7 @@
         <div class="vertical-spacer"></div>
 
         <div class="flex-container">
-            <el-input-number v-model="form.price" placeholder="Price..."></el-input-number>
+            <el-input-number class="variable-width-input-number" v-model="form.price" placeholder="Price..."></el-input-number>
             <div class="horizontal-spacer"></div>
             <el-button class="my-btn" type="primary" @click="submit">Submit</el-button>
         </div>
@@ -139,6 +146,10 @@
 </script>
 
 <style scoped>
+    .check-box {
+        line-height: 35px;
+    }
+
     .file-input {
         width: 100%;
         line-height: 35px;
@@ -165,6 +176,14 @@
         width: 10px;
     }
 
+    .horizontal-spacer-max {
+        width: 100%;
+    }
+
+    .fixed-width-input-number {
+        width: 400px;
+    }
+
     .vertical-spacer {
         height: 10px;
     }
@@ -185,6 +204,19 @@
         .horizontal-spacer {
             height: 10px;
             width: 0;
+        }
+
+        .horizontal-spacer-max {
+            height: 10px;
+            width: 0;
+        }
+
+        .fixed-width-input-number {
+            width: auto;
+        }
+
+        .variable-width-input-number {
+            width: auto;
         }
     }
 </style>

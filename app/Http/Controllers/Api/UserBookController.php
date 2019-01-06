@@ -12,7 +12,16 @@ class UserBookController extends Controller
     public function __invoke(User $user)
     {
         return BookResource::collection(
-            $user->books
+            $user->latestBooks
+                ->load('category')
+                ->load('media')
+        );
+    }
+
+    public function books()
+    {
+        return BookResource::collection(
+            auth()->user()->latestBooks
                 ->load('category')
                 ->load('media')
         );
