@@ -11,13 +11,6 @@
         <div class="vertical-spacer"></div>
 
         <div class="flex-container">
-            <el-checkbox class="check-box" v-model="form.available">Available</el-checkbox>
-            <div class="horizontal-spacer-max"></div>
-            <el-input-number class="fixed-width-input-number" v-model="form.num_of_pages" placeholder="Pages..."></el-input-number>
-        </div>
-        <div class="vertical-spacer"></div>
-
-        <div class="flex-container">
             <el-select v-model="form.category_id" placeholder="Category...">
                 <el-option v-for="category in categories" :key="category.id" :value="category.id" :label="category.name"></el-option>
             </el-select>
@@ -29,11 +22,22 @@
         <div class="vertical-spacer"></div>
 
         <div class="flex-container">
+            <el-checkbox class="check-box" v-model="form.available">Available</el-checkbox>
+            <div class="horizontal-spacer-max"></div>
+            <el-input-number class="fixed-width-input-number" v-model="form.num_of_pages" placeholder="Pages..."></el-input-number>
+        </div>
+        <div class="vertical-spacer"></div>
+
+        <el-input v-model="form.description" placeholder="Description (Optional)" type="textarea" />
+        <div class="vertical-spacer"></div>
+
+        <div class="flex-container">
             <el-input-number class="variable-width-input-number" v-model="form.price" placeholder="Price..."></el-input-number>
             <div class="horizontal-spacer"></div>
             <el-button class="my-btn" type="primary" @click="submit">Submit</el-button>
         </div>
-        <div v-if="form.id && !form.title">
+
+        <div v-if="form.id && (!form.title || mode === 'edit')">
             <hr>
             <div class="vertical-spacer"></div>
             <label>Add an Image</label>
@@ -96,7 +100,7 @@
                             'Content-Type': 'multipart/form-data'
                         }
                     }).then(response => {
-                        console.log(response.data)
+                        this.$notify.success(`Image uploaded for Book ID: ${this.form.id}`)
                     }).catch(error => {
                         ErrorHandler.handle(error, this)
                     })
@@ -147,7 +151,8 @@
 
 <style scoped>
     .check-box {
-        line-height: 35px;
+        line-height: 30px;
+        padding: 5px;
     }
 
     .file-input {

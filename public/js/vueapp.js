@@ -24116,6 +24116,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BookDetails",
   props: {
@@ -24210,12 +24213,6 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", [_vm._v("Posted at:")]),
-          _vm._v(" "),
-          _c("div", [_vm._v(_vm._s(_vm.book.created_at.date))])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
           _c("div", [_vm._v("Category:")]),
           _vm._v(" "),
           _c("div", [_vm._v(_vm._s(_vm.book.category.name))])
@@ -24249,6 +24246,18 @@ var render = function() {
           _c("div", [_vm._v("Language Code:")]),
           _vm._v(" "),
           _c("div", [_vm._v(_vm._s(_vm.book.language))])
+        ]),
+        _vm._v(" "),
+        _vm.book.description
+          ? _c("div", { staticClass: "row" }, [
+              _c("div", [_vm._v(_vm._s(_vm.book.description))])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", [_vm._v("Posted at:")]),
+          _vm._v(" "),
+          _c("div", [_vm._v(_vm._s(_vm.book.created_at.date))])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "cont" }, [
@@ -24517,7 +24526,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.check-box[data-v-c03a7390] {\n    line-height: 35px;\n}\n.file-input[data-v-c03a7390] {\n    width: 100%;\n    line-height: 35px;\n}\n.my-btn[data-v-c03a7390] {\n    width: 250px;\n}\n.book-form[data-v-c03a7390] {\n    width: 400px;\n    background-color: white;\n    padding: 10px;\n    text-align: center;\n}\n.flex-container[data-v-c03a7390] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: nowrap;\n        flex-wrap: nowrap;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n}\n.horizontal-spacer[data-v-c03a7390] {\n    width: 10px;\n}\n.horizontal-spacer-max[data-v-c03a7390] {\n    width: 100%;\n}\n.fixed-width-input-number[data-v-c03a7390] {\n    width: 400px;\n}\n.vertical-spacer[data-v-c03a7390] {\n    height: 10px;\n}\n@media screen and (max-width: 500px) {\n.book-form[data-v-c03a7390] {\n        width: 100%;\n}\n.flex-container[data-v-c03a7390] {\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n}\n.my-btn[data-v-c03a7390] {\n        width: 100%;\n}\n.horizontal-spacer[data-v-c03a7390] {\n        height: 10px;\n        width: 0;\n}\n.horizontal-spacer-max[data-v-c03a7390] {\n        height: 10px;\n        width: 0;\n}\n.fixed-width-input-number[data-v-c03a7390] {\n        width: auto;\n}\n.variable-width-input-number[data-v-c03a7390] {\n        width: auto;\n}\n}\n", ""]);
+exports.push([module.i, "\n.check-box[data-v-c03a7390] {\n    line-height: 30px;\n    padding: 5px;\n}\n.file-input[data-v-c03a7390] {\n    width: 100%;\n    line-height: 35px;\n}\n.my-btn[data-v-c03a7390] {\n    width: 250px;\n}\n.book-form[data-v-c03a7390] {\n    width: 400px;\n    background-color: white;\n    padding: 10px;\n    text-align: center;\n}\n.flex-container[data-v-c03a7390] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-wrap: nowrap;\n        flex-wrap: nowrap;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: row;\n            flex-direction: row;\n}\n.horizontal-spacer[data-v-c03a7390] {\n    width: 10px;\n}\n.horizontal-spacer-max[data-v-c03a7390] {\n    width: 100%;\n}\n.fixed-width-input-number[data-v-c03a7390] {\n    width: 400px;\n}\n.vertical-spacer[data-v-c03a7390] {\n    height: 10px;\n}\n@media screen and (max-width: 500px) {\n.book-form[data-v-c03a7390] {\n        width: 100%;\n}\n.flex-container[data-v-c03a7390] {\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n}\n.my-btn[data-v-c03a7390] {\n        width: 100%;\n}\n.horizontal-spacer[data-v-c03a7390] {\n        height: 10px;\n        width: 0;\n}\n.horizontal-spacer-max[data-v-c03a7390] {\n        height: 10px;\n        width: 0;\n}\n.fixed-width-input-number[data-v-c03a7390] {\n        width: auto;\n}\n.variable-width-input-number[data-v-c03a7390] {\n        width: auto;\n}\n}\n", ""]);
 
 // exports
 
@@ -24536,6 +24545,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -24629,7 +24642,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             'Content-Type': 'multipart/form-data'
           }
         }).then(function (response) {
-          console.log(response.data);
+          _this.$notify.success("Image uploaded for Book ID: ".concat(_this.form.id));
         }).catch(function (error) {
           __WEBPACK_IMPORTED_MODULE_1__util_errorHandler__["a" /* default */].handle(error, _this);
         });
@@ -24755,44 +24768,6 @@ var render = function() {
         { staticClass: "flex-container" },
         [
           _c(
-            "el-checkbox",
-            {
-              staticClass: "check-box",
-              model: {
-                value: _vm.form.available,
-                callback: function($$v) {
-                  _vm.$set(_vm.form, "available", $$v)
-                },
-                expression: "form.available"
-              }
-            },
-            [_vm._v("Available")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "horizontal-spacer-max" }),
-          _vm._v(" "),
-          _c("el-input-number", {
-            staticClass: "fixed-width-input-number",
-            attrs: { placeholder: "Pages..." },
-            model: {
-              value: _vm.form.num_of_pages,
-              callback: function($$v) {
-                _vm.$set(_vm.form, "num_of_pages", $$v)
-              },
-              expression: "form.num_of_pages"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "vertical-spacer" }),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex-container" },
-        [
-          _c(
             "el-select",
             {
               attrs: { placeholder: "Category..." },
@@ -24844,6 +24819,57 @@ var render = function() {
         "div",
         { staticClass: "flex-container" },
         [
+          _c(
+            "el-checkbox",
+            {
+              staticClass: "check-box",
+              model: {
+                value: _vm.form.available,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "available", $$v)
+                },
+                expression: "form.available"
+              }
+            },
+            [_vm._v("Available")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "horizontal-spacer-max" }),
+          _vm._v(" "),
+          _c("el-input-number", {
+            staticClass: "fixed-width-input-number",
+            attrs: { placeholder: "Pages..." },
+            model: {
+              value: _vm.form.num_of_pages,
+              callback: function($$v) {
+                _vm.$set(_vm.form, "num_of_pages", $$v)
+              },
+              expression: "form.num_of_pages"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "vertical-spacer" }),
+      _vm._v(" "),
+      _c("el-input", {
+        attrs: { placeholder: "Description (Optional)", type: "textarea" },
+        model: {
+          value: _vm.form.description,
+          callback: function($$v) {
+            _vm.$set(_vm.form, "description", $$v)
+          },
+          expression: "form.description"
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "vertical-spacer" }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "flex-container" },
+        [
           _c("el-input-number", {
             staticClass: "variable-width-input-number",
             attrs: { placeholder: "Price..." },
@@ -24871,7 +24897,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm.form.id && !_vm.form.title
+      _vm.form.id && (!_vm.form.title || _vm.mode === "edit")
         ? _c("div", [
             _c("hr"),
             _vm._v(" "),

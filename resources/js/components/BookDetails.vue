@@ -31,10 +31,6 @@
             </div>
         </div>
         <div class="row">
-            <div>Posted at:</div>
-            <div>{{ book.created_at.date}}</div>
-        </div>
-        <div class="row">
             <div>Category:</div>
             <div>{{ book.category.name}}</div>
         </div>
@@ -53,6 +49,13 @@
         <div class="row">
             <div>Language Code:</div>
             <div>{{ book.language}}</div>
+        </div>
+        <div v-if="book.description" class="row">
+            <div>{{ book.description }}</div>
+        </div>
+        <div class="row">
+            <div>Posted at:</div>
+            <div>{{ book.created_at.date}}</div>
         </div>
 
         <div class="cont">
