@@ -70995,8 +70995,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     uploadImage: function uploadImage() {
-      var formData = new FormData();
-      formData.append();
+      var _this = this;
+
+      if (this.image && this.form.id) {
+        var formData = new FormData();
+        formData.append('image', this.image);
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("/api/books/".concat(this.form.id, "/media"), formData, {
+          headers: {
+            'Authorization': "Bearer ".concat(this.authToken),
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then(function (response) {
+          console.log(response.data);
+        }).catch(function (error) {
+          __WEBPACK_IMPORTED_MODULE_1__util_errorHandler__["a" /* default */].handle(error, _this);
+        });
+      }
     },
     handleFile: function handleFile() {
       this.image = this.$refs.file.files[0];
@@ -71009,39 +71023,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     store: function store() {
-      var _this = this;
+      var _this2 = this;
 
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/books', this.form, {
         headers: {
           Authorization: "Bearer ".concat(this.authToken)
         }
       }).then(function (response) {
-        _this.form = {};
-        _this.form.id = response.data.data.id;
+        _this2.form = {};
+        _this2.form.id = response.data.data.id;
 
-        _this.$notify.success("Book created with ID: ".concat(response.data.data.id));
+        _this2.$notify.success("Book created with ID: ".concat(response.data.data.id));
       }).catch(function (error) {
-        __WEBPACK_IMPORTED_MODULE_1__util_errorHandler__["a" /* default */].handle(error, _this);
+        __WEBPACK_IMPORTED_MODULE_1__util_errorHandler__["a" /* default */].handle(error, _this2);
       });
     },
     edit: function edit() {
-      var _this2 = this;
+      var _this3 = this;
 
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put("/api/books/".concat(this.book.id), this.form, {
         headers: {
           Authorization: "Bearer ".concat(this.authToken)
         }
       }).then(function (response) {
-        _this2.$notify.success("Book updated with ID: ".concat(response.data.data.id));
+        _this3.$notify.success("Book updated with ID: ".concat(response.data.data.id));
       }).catch(function (error) {
-        __WEBPACK_IMPORTED_MODULE_1__util_errorHandler__["a" /* default */].handle(error, _this2);
+        __WEBPACK_IMPORTED_MODULE_1__util_errorHandler__["a" /* default */].handle(error, _this3);
       });
     },
     loadCategories: function loadCategories() {
-      var _this3 = this;
+      var _this4 = this;
 
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/categories').then(function (response) {
-        _this3.categories = response.data.data;
+        _this4.categories = response.data.data;
       });
     }
   }

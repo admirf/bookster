@@ -77,8 +77,21 @@
         },
         methods: {
             uploadImage () {
-                let formData = new FormData()
-                formData.append()
+                if (this.image && this.form.id) {
+                    let formData = new FormData()
+                    formData.append('image', this.image)
+
+                    axios.post(`/api/books/${this.form.id}/media`, formData, {
+                        headers: {
+                            'Authorization': `Bearer ${this.authToken}`,
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }).then(response => {
+                        console.log(response.data)
+                    }).catch(error => {
+                        ErrorHandler.handle(error, this)
+                    })
+                }
             },
             handleFile () {
                 this.image = this.$refs.file.files[0];
