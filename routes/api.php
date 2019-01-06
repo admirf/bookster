@@ -27,6 +27,7 @@ Route::namespace('Api')->group(function () {
     Route::get('/users', 'UserController@index');
     Route::get('/users/{user}', 'UserController@show');
     Route::get('/users/{user}/books', 'UserBookController');
+    Route::delete('/users/{user}', 'UserController@destroy')->middleware(['auth:api', 'role:admin']);
     Route::get('/me/books', 'UserBookController@books')->middleware(['auth:api']);
 
     Route::get('/categories', 'CategoryController@index');

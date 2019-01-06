@@ -8,7 +8,8 @@ export default new Vuex.Store({
         query: '',
         filters: '',
         cart: [],
-        authToken: null
+        authToken: null,
+        admin: false
     },
     getters: {
         getQuery: state => {
@@ -22,9 +23,15 @@ export default new Vuex.Store({
         },
         getCart: state => {
             return state.cart
+        },
+        getAdmin: state => {
+            return state.admin
         }
     },
     mutations: {
+        setAdmin (state, a) {
+            state.admin = a
+        },
         setQuery (state, q) {
             state.query = q
         },

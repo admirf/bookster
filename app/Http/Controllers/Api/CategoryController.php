@@ -23,7 +23,7 @@ class CategoryController extends Controller
     {
         $attributes = $this->validate($request, [
             'name' => 'required|string|max:255',
-            'description' => 'required|string'
+            'description' => 'sometimes|string'
         ]);
 
         $category = Category::create($attributes);

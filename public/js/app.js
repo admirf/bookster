@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 118);
+/******/ 	return __webpack_require__(__webpack_require__.s = 119);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -801,6 +801,76 @@ module.exports = __webpack_require__(38);
 
 /***/ }),
 /* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  handle: function handle(error, vueInstance) {
+    if (error.response) {
+      (function () {
+        switch (error.response.status) {
+          case 422:
+            var messages = error.response.data.errors;
+
+            var _loop = function _loop(key) {
+              var _loop2 = function _loop2(i) {
+                setTimeout(function () {
+                  vueInstance.$notify.error({
+                    title: 'Error',
+                    message: messages[key][i]
+                  });
+                }, 100);
+              };
+
+              for (var i in messages[key]) {
+                _loop2(i);
+              }
+            };
+
+            for (var key in error.response.data.errors) {
+              _loop(key);
+            }
+
+            break;
+
+          case 404:
+            vueInstance.$router.push({
+              name: 'not-found'
+            });
+            break;
+
+          case 401:
+            vueInstance.$store.commit('setAuthToken', '');
+            vueInstance.$notify.error({
+              title: 'Error',
+              message: 'You have to login again'
+            });
+            vueInstance.$router.push({
+              name: 'login'
+            });
+            break;
+
+          case 500:
+            vueInstance.$notify.error({
+              title: 'Error',
+              message: 'Server Error'
+            });
+            break;
+
+          default:
+            vueInstance.$notify.error({
+              title: 'Error',
+              message: 'Unknown Error'
+            });
+            break;
+        }
+      })();
+    }
+  }
+});
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11766,7 +11836,7 @@ module.exports = Vue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(56).setImmediate))
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12709,76 +12779,6 @@ var index_esm = {
 
 /* harmony default export */ __webpack_exports__["a"] = (index_esm);
 
-
-/***/ }),
-/* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-  handle: function handle(error, vueInstance) {
-    if (error.response) {
-      (function () {
-        switch (error.response.status) {
-          case 422:
-            var messages = error.response.data.errors;
-
-            var _loop = function _loop(key) {
-              var _loop2 = function _loop2(i) {
-                setTimeout(function () {
-                  vueInstance.$notify.error({
-                    title: 'Error',
-                    message: messages[key][i]
-                  });
-                }, 100);
-              };
-
-              for (var i in messages[key]) {
-                _loop2(i);
-              }
-            };
-
-            for (var key in error.response.data.errors) {
-              _loop(key);
-            }
-
-            break;
-
-          case 404:
-            vueInstance.$router.push({
-              name: 'not-found'
-            });
-            break;
-
-          case 401:
-            vueInstance.$store.commit('setAuthToken', '');
-            vueInstance.$notify.error({
-              title: 'Error',
-              message: 'You have to login again'
-            });
-            vueInstance.$router.push({
-              name: 'login'
-            });
-            break;
-
-          case 500:
-            vueInstance.$notify.error({
-              title: 'Error',
-              message: 'Server Error'
-            });
-            break;
-
-          default:
-            vueInstance.$notify.error({
-              title: 'Error',
-              message: 'Unknown Error'
-            });
-            break;
-        }
-      })();
-    }
-  }
-});
 
 /***/ }),
 /* 9 */,
@@ -14807,14 +14807,15 @@ exports.push([module.i, "\n.right[data-v-6dde423b] {\n    float: right;\n}\n", "
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__ = __webpack_require__(6);
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -14843,29 +14844,51 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "navbar",
   data: function data() {
     return {
-      activeIndex: '0'
+      activeIndex: '0',
+      admin: false
     };
   },
   computed: _objectSpread({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
     authToken: 'getAuthToken'
   })),
+  created: function created() {
+    var _this = this;
+
+    if (this.authToken) {
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/me', {
+        headers: {
+          Authorization: "Bearer ".concat(this.authToken)
+        }
+      }).then(function (response) {
+        response.data.data.roles.forEach(function (item) {
+          if (item.name === 'admin') {
+            _this.admin = true;
+
+            _this.$store.commit('setAdmin', true);
+          }
+        });
+      }).catch(function (error) {
+        __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__["a" /* default */].handle(error);
+      });
+    }
+  },
   methods: {
     handleSelect: function handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
     logout: function logout() {
-      var _this = this;
+      var _this2 = this;
 
       __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/logout', {
         headers: {
           Authorization: "Bearer ".concat(this.authToken)
         }
       }).then(function (response) {
-        _this.$store.commit('setAuthToken', '');
+        _this2.$store.commit('setAuthToken', '');
 
-        _this.$router.push('/');
+        _this2.$router.push('/');
       }).catch(function (error) {
-        __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__["a" /* default */].handle(error, _this);
+        __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__["a" /* default */].handle(error, _this2);
       });
     }
   }
@@ -14937,6 +14960,14 @@ var render = function() {
                 "el-menu-item",
                 { staticClass: "right", attrs: { index: "/account" } },
                 [_vm._v("Account")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.authToken && _vm.admin
+            ? _c(
+                "el-menu-item",
+                { staticClass: "right", attrs: { index: "/admin" } },
+                [_vm._v("Admin")]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -28143,15 +28174,16 @@ return jQuery;
 /* 115 */,
 /* 116 */,
 /* 117 */,
-/* 118 */
+/* 118 */,
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(119);
-module.exports = __webpack_require__(124);
+__webpack_require__(120);
+module.exports = __webpack_require__(125);
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -28159,9 +28191,9 @@ module.exports = __webpack_require__(124);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(120);
+__webpack_require__(121);
 
-window.Vue = __webpack_require__(6);
+window.Vue = __webpack_require__(7);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -28186,10 +28218,10 @@ var app = new Vue({
 });
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
-window._ = __webpack_require__(121);
+window._ = __webpack_require__(122);
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -28200,7 +28232,7 @@ try {
   window.Popper = __webpack_require__(95).default;
   window.$ = window.jQuery = __webpack_require__(96);
 
-  __webpack_require__(123);
+  __webpack_require__(124);
 } catch (e) {}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -28239,7 +28271,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -45351,10 +45383,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(122)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(123)(module)))
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -45382,7 +45414,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -49332,7 +49364,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

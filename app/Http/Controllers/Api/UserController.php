@@ -19,6 +19,13 @@ class UserController extends Controller
         return new UserResource($user->load('books')->load('books.media'));
     }
 
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return response('', 204);
+    }
+
     public function balance()
     {
         return response()->json([

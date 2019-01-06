@@ -13,7 +13,7 @@ class BuyController extends Controller
     {
         $books = $this->validate($request, [
             'books' => 'required|array',
-            'books.*.id' => 'required|numeric',
+            'books.*.id' => 'required|numeric|exists:books',
             'credits' => ['required', 'numeric', new HasCredits($request->user())]
         ]);
 

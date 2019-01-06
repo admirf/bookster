@@ -65,12 +65,20 @@
             <div class="right-btn">
                 <el-button type="primary" class="my-btn" @click="handleBuy">Buy</el-button>
             </div>
+            <div v-if="authToken && admin" class="horizontal-spacer"></div>
+            <div v-if="authToken && admin" class="right-btn">
+                <el-button type="danger" class="my-btn" @click="deleteBook(book.id)">Delete</el-button>
+            </div>
         </div>
 
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
+    import { mapGetters } from 'vuex'
+    import ErrorHandler from '../util/errorHandler'
+
     export default {
         name: "BookDetails",
         props: {
@@ -78,7 +86,25 @@
                 required: true
             }
         },
+        computed: {
+            ...mapGetters({
+                authToken: 'getAuthToken',
+                admin: 'getAdmin'
+            })
+        },
         methods: {
+            deleteBook (id) {
+                axios.delete(`/api/books/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${this.authToken}`
+                    }
+                }).then(response => {
+                    this.$notify.success('Successfully deleted book.')
+                    this.$router.go(-1)
+                }).catch(error => {
+                    ErrorHandler.handle(error, this)
+                })
+            },
             handleBuy () {
                 this.$store.dispatch('addToCart', this.book).then(() => {
                     this.$notify.success({
@@ -92,6 +118,10 @@
 </script>
 
 <style scoped>
+    .horizontal-spacer {
+        width: 10px;
+    }
+
     .row {
         display: flex;
         flex-wrap: nowrap;

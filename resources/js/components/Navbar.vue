@@ -14,6 +14,7 @@
             <el-menu-item v-if="!authToken" index="/login" class="right">Login</el-menu-item>
             <el-menu-item v-if="!authToken" index="/register" class="right">Register</el-menu-item>
             <el-menu-item v-if="authToken" index="/account" class="right">Account</el-menu-item>
+            <el-menu-item v-if="authToken && admin" index="/admin" class="right">Admin</el-menu-item>
             <el-menu-item v-if="authToken" index="/create-book" class="right"><i class="el-icon-plus"></i></el-menu-item>
         </el-menu>
     </div>
@@ -29,12 +30,31 @@
         data() {
             return {
                 activeIndex: '0',
+                admin: false
             };
         },
         computed: {
             ...mapGetters({
                 authToken: 'getAuthToken',
             })
+        },
+        created () {
+            if (this.authToken) {
+                axios.get('/api/me', {
+                    headers: {
+                        Authorization: `Bearer ${this.authToken}`
+                    }
+                }).then(response => {
+                    response.data.data.roles.forEach(item => {
+                        if (item.name === 'admin') {
+                            this.admin = true
+                            this.$store.commit('setAdmin', true)
+                        }
+                    })
+                }).catch(error => {
+                    ErrorHandler.handle(error)
+                })
+            }
         },
         methods: {
             handleSelect(key, keyPath) {

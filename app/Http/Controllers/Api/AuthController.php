@@ -48,7 +48,7 @@ class AuthController extends Controller
 
     public function me()
     {
-        return new UserResource(auth()->user()->load('books')->load('books.media'));
+        return new UserResource(auth()->user()->load('roles'));
     }
 
     public function logout()

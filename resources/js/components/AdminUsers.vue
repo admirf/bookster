@@ -1,15 +1,14 @@
 <template>
-    <div class="books">
+    <div class="users">
         <div style="text-align: center">
-            <h3>Your Books</h3>
+            <h3>Users</h3>
         </div>
-        <div class="book align-vertical" v-for="(book, index) in books" :key="book.id" :class="color(index)">
-            <div><strong>ID:</strong> <em>{{ book.id }}</em></div>
-            <div>Price: {{ book.price }}</div>
-            <div>Title: {{ book.title }}</div>
+        <div class="user align-vertical" v-for="(user, index) in users" :key="user.id" :class="color(index)">
+            <div><strong>ID:</strong> <em>{{ user.id }}</em></div>
+            <div>Email: {{ user.email }}</div>
             <div>
-                <el-button type="primary" @click="goToBook(book.id)"><i class="el-icon-view"></i></el-button>
-                <el-button type="success" @click="goToEditBook(book.id)">Edit</el-button>
+                <el-button type="primary" @click="goToUser(user.id)"><i class="el-icon-view"></i></el-button>
+                <el-button type="danger" @click="deleteUser(user.id, index)">Ban</el-button>
             </div>
         </div>
     </div>
@@ -21,10 +20,10 @@
     import { mapGetters } from 'vuex'
 
     export default {
-        name: "MyBooks",
+        name: "AdminUsers",
         data () {
             return {
-                books: []
+                users: []
             }
         },
         computed: {
@@ -33,31 +32,31 @@
             })
         },
         created () {
-            axios.get('/api/me/books', {
-                headers: {
-                    Authorization: `Bearer ${this.authToken}`
-                }
-            }).then(response => {
-                this.books = response.data.data
+            axios.get('/api/users').then(response => {
+                this.users = response.data.data
             }).catch(error => {
                 ErrorHandler.handle(error, this)
             })
         },
         methods: {
-            goToBook (id) {
+            goToUser (id) {
                 this.$router.push({
-                    name: 'book',
+                    name: 'user',
                     params: {
                         id: id
                     }
                 })
             },
-            goToEditBook (id) {
-                this.$router.push({
-                    name: 'edit-book',
-                    params: {
-                        id: id
+            deleteUser (id, index) {
+                axios.delete(`/api/users/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${this.authToken}`
                     }
+                }).then(response => {
+                    this.users.splice(index, 1)
+                    this.$notify.success('User removed.')
+                }).catch(error => {
+                    ErrorHandler.handle(error, this)
                 })
             },
             color (index) {
@@ -72,7 +71,7 @@
         line-height: 40px;
     }
 
-    .book {
+    .user {
         display: flex;
         flex-wrap: nowrap;
         justify-content: space-evenly;
@@ -85,14 +84,14 @@
         background-color: whitesmoke;
     }
 
-    .books {
+    .users {
         width: 600px;
         background-color: white;
         padding: 18px;
     }
 
     @media screen and (max-width: 700px) {
-        .books {
+        .users {
             width: 100%;
         }
     }

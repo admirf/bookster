@@ -12,6 +12,7 @@ import Book from './pages/Book'
 import CreateBook from './pages/CreateBook'
 import EditBook from './pages/EditBook'
 import Account from './pages/Account'
+import Admin from './pages/Admin'
 import Cart from './pages/Cart'
 import Results from './pages/Results'
 import ElementUI from 'element-ui';
@@ -39,6 +40,11 @@ const router = new VueRouter({
             path: '/account',
             name: 'account',
             component: Account
+        },
+        {
+            path: '/admin',
+            name: 'admin',
+            component: Admin
         },
         {
             path: '/transaction/:id',
