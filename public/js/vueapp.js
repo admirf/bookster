@@ -24569,6 +24569,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -24816,35 +24818,42 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("div", { staticClass: "vertical-spacer" }),
-      _vm._v(" "),
-      _c("label", [_vm._v("Add an Image")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "vertical-spacer" }),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex-container" },
-        [
-          _c("input", {
-            ref: "file",
-            staticClass: "file-input",
-            attrs: { type: "file" },
-            on: { change: _vm.handleFile }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "horizontal-spacer" }),
-          _vm._v(" "),
-          _c(
-            "el-button",
-            { attrs: { type: "primary" }, on: { click: _vm.uploadImage } },
-            [_vm._v("Upload")]
-          )
-        ],
-        1
-      )
+      _vm.form.id && !_vm.form.title
+        ? _c("div", [
+            _c("hr"),
+            _vm._v(" "),
+            _c("div", { staticClass: "vertical-spacer" }),
+            _vm._v(" "),
+            _c("label", [_vm._v("Add an Image")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "vertical-spacer" }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex-container" },
+              [
+                _c("input", {
+                  ref: "file",
+                  staticClass: "file-input",
+                  attrs: { type: "file" },
+                  on: { change: _vm.handleFile }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "horizontal-spacer" }),
+                _vm._v(" "),
+                _c(
+                  "el-button",
+                  {
+                    attrs: { type: "primary" },
+                    on: { click: _vm.uploadImage }
+                  },
+                  [_vm._v("Upload")]
+                )
+              ],
+              1
+            )
+          ])
+        : _vm._e()
     ],
     1
   )
@@ -27163,9 +27172,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     search: function search() {
       if (this.query.length > 0) {
+        var endpoint = "/api/search?q=".concat(this.query).concat(this.filters, "&page=").concat(this.currPage);
+
+        if (this.query === '$index') {
+          endpoint = "/api/books?page=".concat(this.currPage);
+        }
+
         this.loading = true;
         var self = this;
-        __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get("/api/search?q=".concat(this.query).concat(this.filters, "&page=").concat(this.currPage)).then(function (response) {
+        __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get(endpoint).then(function (response) {
           self.books = response.data.data;
           self.perPage = response.data.meta.per_page;
           self.total = response.data.meta.total;
@@ -27580,7 +27595,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     setQuery: function setQuery() {
-      this.$store.commit('setQuery', this.input);
+      if (this.input.length === 0) {
+        this.$store.commit('setQuery', '$index');
+      } else {
+        this.$store.commit('setQuery', this.input);
+      }
     }
   }
 });

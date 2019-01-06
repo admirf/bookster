@@ -26,14 +26,16 @@
             <div class="horizontal-spacer"></div>
             <el-button class="my-btn" type="primary" @click="submit">Submit</el-button>
         </div>
-        <hr>
-        <div class="vertical-spacer"></div>
-        <label>Add an Image</label>
-        <div class="vertical-spacer"></div>
-        <div class="flex-container">
-            <input ref="file" v-on:change="handleFile" class="file-input" type="file" />
-            <div class="horizontal-spacer"></div>
-            <el-button type="primary" @click="uploadImage">Upload</el-button>
+        <div v-if="form.id && !form.title">
+            <hr>
+            <div class="vertical-spacer"></div>
+            <label>Add an Image</label>
+            <div class="vertical-spacer"></div>
+            <div class="flex-container">
+                <input ref="file" v-on:change="handleFile" class="file-input" type="file" />
+                <div class="horizontal-spacer"></div>
+                <el-button type="primary" @click="uploadImage">Upload</el-button>
+            </div>
         </div>
     </div>
 </template>

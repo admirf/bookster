@@ -31,7 +31,11 @@
         },
         methods: {
             setQuery () {
-                this.$store.commit('setQuery', this.input)
+                if (this.input.length === 0) {
+                    this.$store.commit('setQuery', '$index')
+                } else {
+                    this.$store.commit('setQuery', this.input)
+                }
             }
         }
     }

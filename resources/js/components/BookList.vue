@@ -64,9 +64,16 @@
         methods: {
             search () {
                 if (this.query.length > 0) {
+                    let endpoint = `/api/search?q=${this.query}${this.filters}&page=${this.currPage}`
+
+                    if (this.query === '$index') {
+                        endpoint = `/api/books?page=${this.currPage}`
+                    }
+
                     this.loading = true
                     let self = this
-                    axios.get(`/api/search?q=${this.query}${this.filters}&page=${this.currPage}`).then((response) => {
+
+                    axios.get(endpoint).then((response) => {
                         self.books = response.data.data
                         self.perPage = response.data.meta.per_page
                         self.total = response.data.meta.total
