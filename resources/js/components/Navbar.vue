@@ -49,7 +49,7 @@
                     this.$store.commit('setAuthToken', '')
                     this.$router.push('/')
                 }).catch(error => {
-                    ErrorHandler.handle(error, self)
+                    ErrorHandler.handle(error, this)
                 })
             }
         }

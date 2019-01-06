@@ -9,16 +9,51 @@
         </div>
 
 
-        <br>
-        <h3>{{ book.title }}</h3>
-        <br>
-        <em>{{ book.author }}</em>
-        <br>
-        <br>
-        <router-link :to="`/user/${book.user.id}`">{{ book.user.name }}</router-link>
-        <br>
-        <br>
-        <hr>
+        <div class="title">
+            <h3>Book</h3>
+        </div>
+        <div class="row">
+            <div>Book ID:</div>
+            <div>{{ book.id }}</div>
+        </div>
+        <div class="row">
+            <div>Title:</div>
+            <div>{{ book.title }}</div>
+        </div>
+        <div class="row">
+            <div>Author:</div>
+            <div>{{ book.author}}</div>
+        </div>
+        <div class="row">
+            <div>Posted by:</div>
+            <div>
+                <router-link :to="`/user/${book.user.id}`">{{ book.user.name }}</router-link>
+            </div>
+        </div>
+        <div class="row">
+            <div>Posted at:</div>
+            <div>{{ book.created_at.date}}</div>
+        </div>
+        <div class="row">
+            <div>Category:</div>
+            <div>{{ book.category.name}}</div>
+        </div>
+        <div v-if="book.edition" class="row">
+            <div>Edition:</div>
+            <div>{{ book.edition}}</div>
+        </div>
+        <div v-if="book.num_of_pages" class="row">
+            <div>Number of Pages:</div>
+            <div>{{ book.num_of_pages}}</div>
+        </div>
+        <div v-if="book.isbn" class="row">
+            <div>ISBN:</div>
+            <div>{{ book.isbn}}</div>
+        </div>
+        <div class="row">
+            <div>Language Code:</div>
+            <div>{{ book.language}}</div>
+        </div>
 
         <div class="cont">
             <div class="price">
@@ -54,8 +89,13 @@
 </script>
 
 <style scoped>
-    hr {
-        margin-bottom: 0;
+    .row {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        border-bottom: #011e4f 1px solid;
     }
 
     .price {
@@ -67,13 +107,13 @@
 
     .right-btn {
         width: 100px;
-        padding: 5px;
     }
 
     .cont {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
+        margin-top: 18px;
     }
 
     img {
@@ -81,11 +121,18 @@
     }
 
     .book-details {
+        display: flex;
+        flex-direction: column;
         background-color: white;
-        text-align: center;
+        padding: 18px;
     }
 
     .my-btn {
         width: 100%;
+    }
+
+    .title {
+        text-align: center;
+        border-bottom: #011e4f 1px solid;
     }
 </style>
