@@ -10,6 +10,7 @@
             <div>
                 <el-button type="primary" @click="goToBook(book.id)"><i class="el-icon-view"></i></el-button>
                 <el-button type="success" @click="goToEditBook(book.id)">Edit</el-button>
+                <el-button type="danger" @click="deleteBook(book.id, index)">Delete</el-button>
             </div>
         </div>
     </div>
@@ -44,6 +45,18 @@
             })
         },
         methods: {
+            deleteBook (id, index) {
+                axios.delete(`/api/books/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${this.authToken}`
+                    }
+                }).then(response => {
+                    this.books.splice(index, 1)
+                    this.$notify.success('Successfully deleted book.')
+                }).catch(error => {
+                    ErrorHandler.handle(error, this)
+                })
+            },
             goToBook (id) {
                 this.$router.push({
                     name: 'book',

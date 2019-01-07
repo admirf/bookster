@@ -25955,6 +25955,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -25982,6 +25983,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
   },
   methods: {
+    deleteBook: function deleteBook(id, index) {
+      var _this2 = this;
+
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete("/api/books/".concat(id), {
+        headers: {
+          Authorization: "Bearer ".concat(this.authToken)
+        }
+      }).then(function (response) {
+        _this2.books.splice(index, 1);
+
+        _this2.$notify.success('Successfully deleted book.');
+      }).catch(function (error) {
+        __WEBPACK_IMPORTED_MODULE_1__util_errorHandler__["a" /* default */].handle(error, _this2);
+      });
+    },
     goToBook: function goToBook(id) {
       this.$router.push({
         name: 'book',
@@ -26064,6 +26080,19 @@ var render = function() {
                     }
                   },
                   [_vm._v("Edit")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-button",
+                  {
+                    attrs: { type: "danger" },
+                    on: {
+                      click: function($event) {
+                        _vm.deleteBook(book.id, index)
+                      }
+                    }
+                  },
+                  [_vm._v("Delete")]
                 )
               ],
               1
