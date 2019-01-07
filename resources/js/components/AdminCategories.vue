@@ -118,7 +118,7 @@
     }
 
     @media screen and (max-width: 700px) {
-        .users {
+        .categories {
             width: 100%;
         }
     }

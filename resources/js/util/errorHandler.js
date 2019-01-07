@@ -33,6 +33,14 @@ export default {
                     });
                     break
 
+                case 403:
+                    vueInstance.$notify.error({
+                        title: 'Error',
+                        message: 'You are not authorized for this action.'
+                    })
+                    vueInstance.$router.push('/')
+                    break
+
                 case 500:
                     vueInstance.$notify.error({
                         title: 'Error',

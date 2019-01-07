@@ -29,13 +29,13 @@
         name: "navbar",
         data() {
             return {
-                activeIndex: '0',
-                admin: false
+                activeIndex: '0'
             };
         },
         computed: {
             ...mapGetters({
                 authToken: 'getAuthToken',
+                admin: 'getAdmin'
             })
         },
         created () {
@@ -47,12 +47,11 @@
                 }).then(response => {
                     response.data.data.roles.forEach(item => {
                         if (item.name === 'admin') {
-                            this.admin = true
                             this.$store.commit('setAdmin', true)
                         }
                     })
                 }).catch(error => {
-                    ErrorHandler.handle(error)
+                    ErrorHandler.handle(error, this)
                 })
             }
         },
@@ -67,6 +66,7 @@
                     }
                 }).then(response => {
                     this.$store.commit('setAuthToken', '')
+                    this.$store.commit('setAdmin', false)
                     this.$router.push('/')
                 }).catch(error => {
                     ErrorHandler.handle(error, this)

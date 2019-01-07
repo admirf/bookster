@@ -15,6 +15,7 @@ import Account from './pages/Account'
 import Admin from './pages/Admin'
 import Cart from './pages/Cart'
 import Results from './pages/Results'
+import Report from './pages/Report'
 import ElementUI from 'element-ui';
 import store from './store/index'
 import 'element-ui/lib/theme-chalk/index.css';
@@ -60,6 +61,11 @@ const router = new VueRouter({
             path: '/results',
             name: 'results',
             component: Results
+        },
+        {
+            path: '/report/:id',
+            name: 'report',
+            component: Report
         },
         {
             path: '/login',

@@ -32,6 +32,22 @@
                 let self = this
                 axios.post('/api/login', this.signInForm).then(response => {
                     self.$store.commit('setAuthToken', response.data.access_token)
+
+                    // Check if admin
+                    axios.get('/api/me', {
+                        headers: {
+                            Authorization: `Bearer ${response.data.access_token}`
+                        }
+                    }).then(response => {
+                        response.data.data.roles.forEach(item => {
+                            if (item.name === 'admin') {
+                                this.$store.commit('setAdmin', true)
+                            }
+                        })
+                    }).catch(error => {
+                        ErrorHandler.handle(error, this)
+                    })
+
                     self.$notify.success({
                         title: 'Success',
                         message: "Successful login",

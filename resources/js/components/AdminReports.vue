@@ -1,14 +1,15 @@
 <template>
-    <div class="users">
+    <div class="reports">
         <div style="text-align: center">
-            <h3>Users</h3>
+            <h3>Reports</h3>
         </div>
-        <div class="user align-vertical" v-for="(user, index) in users" :key="user.id" :class="color(index)">
-            <div><strong>ID:</strong> <em>{{ user.id }}</em></div>
-            <div>{{ user.email }}</div>
+
+        <div class="report align-vertical" v-for="(report, index) in reports" :key="report.id" :class="color(index)">
+            <div><strong>ID:</strong> <em>{{ report.id }}</em></div>
+            <div>Reporter: {{ report.user.name }}</div>
             <div>
-                <el-button type="primary" @click="goToUser(user.id)"><i class="el-icon-view"></i></el-button>
-                <el-button type="danger" @click="deleteUser(user.id, index)">Ban</el-button>
+                <el-button type="primary" @click="goToReport(report.id)"><i class="el-icon-view"></i></el-button>
+                <el-button type="danger" @click="deleteReport(report.id, index)">Delete</el-button>
             </div>
         </div>
     </div>
@@ -20,10 +21,10 @@
     import { mapGetters } from 'vuex'
 
     export default {
-        name: "AdminUsers",
+        name: "AdminCategories",
         data () {
             return {
-                users: []
+                reports: [],
             }
         },
         computed: {
@@ -32,29 +33,33 @@
             })
         },
         created () {
-            axios.get('/api/users').then(response => {
-                this.users = response.data.data
+            axios.get('/api/reports', {
+                headers: {
+                    Authorization: `Bearer ${this.authToken}`
+                }
+            }).then(response => {
+                this.reports = response.data.data
             }).catch(error => {
                 ErrorHandler.handle(error, this)
             })
         },
         methods: {
-            goToUser (id) {
+            goToReport (id) {
                 this.$router.push({
-                    name: 'user',
+                    name: 'report',
                     params: {
                         id: id
                     }
                 })
             },
-            deleteUser (id, index) {
-                axios.delete(`/api/users/${id}`, {
+            deleteReport (id, index) {
+                axios.delete(`/api/reports/${id}`, {
                     headers: {
                         Authorization: `Bearer ${this.authToken}`
                     }
                 }).then(response => {
-                    this.users.splice(index, 1)
-                    this.$notify.success('User removed.')
+                    this.reports.splice(index, 1)
+                    this.$notify.success('Report deleted.')
                 }).catch(error => {
                     ErrorHandler.handle(error, this)
                 })
@@ -71,7 +76,7 @@
         line-height: 40px;
     }
 
-    .user {
+    .report {
         display: flex;
         flex-wrap: nowrap;
         justify-content: space-evenly;
@@ -84,14 +89,14 @@
         background-color: whitesmoke;
     }
 
-    .users {
+    .reports {
         width: 600px;
         background-color: white;
         padding: 18px;
     }
 
     @media screen and (max-width: 700px) {
-        .users {
+        .reports {
             width: 100%;
         }
     }

@@ -1,32 +1,32 @@
 <template>
-    <div class="box" v-if="user">
+    <div class="box" v-if="report">
         <div class="title">
-            <h3>User</h3>
+            <h3>Report</h3>
         </div>
         <div class="row">
-            <div>User ID:</div>
-            <div>{{ user.id }}</div>
+            <div>Report ID:</div>
+            <div>{{ report.id }}</div>
         </div>
         <div class="row">
-            <div>Name:</div>
-            <div>{{ user.name }}</div>
+            <div>Title:</div>
+            <div>{{ report.title }}</div>
         </div>
         <div class="row">
-            <div>User Since:</div>
-            <div>{{ user.created_at.date}}</div>
+            <div style="text-align: center">{{ report.content }}</div>
         </div>
-        <div class="title">
-            <h4>Books</h4>
+        <div class="row">
+            <div>Posted by:</div>
+            <router-link :to="`/user/${report.user.id}`">{{ report.user.name }}</router-link>
         </div>
-        <div v-for="(book, index) in user.books" :key="book.id" class="row" :class="color(index)">
-            <div>Book ID: <a :href="`/book/${book.id}`"><strong>{{ book.id }}</strong></a></div>
-            <div>{{ book.title}} {{ book.price }} $</div>
+        <div class="row">
+            <div>Posted at:</div>
+            <div>{{ report.created_at.date}}</div>
         </div>
 
         <div class="cont">
             <div v-if="authToken && admin" class="horizontal-spacer"></div>
             <div v-if="authToken && admin" class="right-btn">
-                <el-button type="danger" class="my-btn" @click="deleteUser(user.id)">Delete</el-button>
+                <el-button type="danger" class="my-btn" @click="deleteReport(report.id)">Delete</el-button>
             </div>
         </div>
     </div>
@@ -38,9 +38,9 @@
     import ErrorHandler from '../util/errorHandler'
 
     export default {
-        name: "UserDetails",
+        name: "ReportDetails",
         props: {
-            user: {
+            report: {
                 required: true
             }
         },
@@ -51,13 +51,13 @@
             })
         },
         methods: {
-            deleteUser (id) {
-                axios.delete(`/api/users/${id}`, {
+            deleteReport (id) {
+                axios.delete(`/api/reports/${id}`, {
                     headers: {
                         Authorization: `Bearer ${this.authToken}`
                     }
                 }).then(response => {
-                    this.$notify.success('Successfully deleted user.')
+                    this.$notify.success('Successfully deleted report.')
                     this.$router.go(-1)
                 }).catch(error => {
                     ErrorHandler.handle(error, this)

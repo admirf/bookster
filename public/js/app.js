@@ -850,6 +850,14 @@ module.exports = __webpack_require__(38);
             });
             break;
 
+          case 403:
+            vueInstance.$notify.error({
+              title: 'Error',
+              message: 'You are not authorized for this action.'
+            });
+            vueInstance.$router.push('/');
+            break;
+
           case 500:
             vueInstance.$notify.error({
               title: 'Error',
@@ -14844,12 +14852,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "navbar",
   data: function data() {
     return {
-      activeIndex: '0',
-      admin: false
+      activeIndex: '0'
     };
   },
   computed: _objectSpread({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
-    authToken: 'getAuthToken'
+    authToken: 'getAuthToken',
+    admin: 'getAdmin'
   })),
   created: function created() {
     var _this = this;
@@ -14862,13 +14870,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (response) {
         response.data.data.roles.forEach(function (item) {
           if (item.name === 'admin') {
-            _this.admin = true;
-
             _this.$store.commit('setAdmin', true);
           }
         });
       }).catch(function (error) {
-        __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__["a" /* default */].handle(error);
+        __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__["a" /* default */].handle(error, _this);
       });
     }
   },
@@ -14885,6 +14891,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }).then(function (response) {
         _this2.$store.commit('setAuthToken', '');
+
+        _this2.$store.commit('setAdmin', false);
 
         _this2.$router.push('/');
       }).catch(function (error) {
