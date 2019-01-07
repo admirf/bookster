@@ -14845,6 +14845,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -14852,15 +14880,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "navbar",
   data: function data() {
     return {
-      activeIndex: '0'
+      activeIndex: '0',
+      width: 0
     };
   },
   computed: _objectSpread({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])({
     authToken: 'getAuthToken',
     admin: 'getAdmin'
-  })),
-  created: function created() {
+  }), {
+    collapse: function collapse() {
+      return this.width < 500;
+    }
+  }),
+  mounted: function mounted() {
     var _this = this;
+
+    this.$nextTick(function () {
+      window.addEventListener('resize', function () {
+        _this.width = window.innerWidth;
+      });
+    });
+  },
+  created: function created() {
+    var _this2 = this;
+
+    this.width = window.innerWidth;
 
     if (this.authToken) {
       __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/me', {
@@ -14870,11 +14914,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (response) {
         response.data.data.roles.forEach(function (item) {
           if (item.name === 'admin') {
-            _this.$store.commit('setAdmin', true);
+            _this2.$store.commit('setAdmin', true);
           }
         });
       }).catch(function (error) {
-        __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__["a" /* default */].handle(error, _this);
+        __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__["a" /* default */].handle(error, _this2);
       });
     }
   },
@@ -14883,20 +14927,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       console.log(key, keyPath);
     },
     logout: function logout() {
-      var _this2 = this;
+      var _this3 = this;
 
       __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/logout', {
         headers: {
           Authorization: "Bearer ".concat(this.authToken)
         }
       }).then(function (response) {
-        _this2.$store.commit('setAuthToken', '');
+        _this3.$store.commit('setAuthToken', '');
 
-        _this2.$store.commit('setAdmin', false);
+        _this3.$store.commit('setAdmin', false);
 
-        _this2.$router.push('/');
+        _this3.$router.push('/');
       }).catch(function (error) {
-        __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__["a" /* default */].handle(error, _this2);
+        __WEBPACK_IMPORTED_MODULE_2__util_errorHandler__["a" /* default */].handle(error, _this3);
       });
     }
   }
@@ -14927,13 +14971,23 @@ var render = function() {
           on: { select: _vm.handleSelect }
         },
         [
-          _c("el-menu-item", { attrs: { index: "/" } }, [_vm._v("Home")]),
-          _vm._v(" "),
-          _c("el-menu-item", { attrs: { index: "/results" } }, [
-            _vm._v("Search")
+          _c("el-menu-item", { attrs: { index: "/" } }, [
+            _vm.collapse
+              ? _c("div", [_vm._v("H")])
+              : _c("div", [_vm._v("Home")])
           ]),
           _vm._v(" "),
-          _c("el-menu-item", { attrs: { index: "/cart" } }, [_vm._v("Cart")]),
+          _c("el-menu-item", { attrs: { index: "/results" } }, [
+            _vm.collapse
+              ? _c("div", [_vm._v("S")])
+              : _c("div", [_vm._v("Search")])
+          ]),
+          _vm._v(" "),
+          _c("el-menu-item", { attrs: { index: "/cart" } }, [
+            _vm.collapse
+              ? _c("div", [_vm._v("C")])
+              : _c("div", [_vm._v("Cart")])
+          ]),
           _vm._v(" "),
           _vm.authToken
             ? _c(
@@ -14943,7 +14997,11 @@ var render = function() {
                   attrs: { index: "#" },
                   on: { click: _vm.logout }
                 },
-                [_vm._v("Log Out")]
+                [
+                  _vm.collapse
+                    ? _c("div", [_vm._v("L")])
+                    : _c("div", [_vm._v("Log Out")])
+                ]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -14951,7 +15009,11 @@ var render = function() {
             ? _c(
                 "el-menu-item",
                 { staticClass: "right", attrs: { index: "/login" } },
-                [_vm._v("Login")]
+                [
+                  _vm.collapse
+                    ? _c("div", [_vm._v("L")])
+                    : _c("div", [_vm._v("Login")])
+                ]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -14959,7 +15021,11 @@ var render = function() {
             ? _c(
                 "el-menu-item",
                 { staticClass: "right", attrs: { index: "/register" } },
-                [_vm._v("Register")]
+                [
+                  _vm.collapse
+                    ? _c("div", [_vm._v("R")])
+                    : _c("div", [_vm._v("Register")])
+                ]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -14967,7 +15033,11 @@ var render = function() {
             ? _c(
                 "el-menu-item",
                 { staticClass: "right", attrs: { index: "/account" } },
-                [_vm._v("Account")]
+                [
+                  _vm.collapse
+                    ? _c("div", [_vm._v("AC")])
+                    : _c("div", [_vm._v("Account")])
+                ]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -14975,7 +15045,11 @@ var render = function() {
             ? _c(
                 "el-menu-item",
                 { staticClass: "right", attrs: { index: "/admin" } },
-                [_vm._v("Admin")]
+                [
+                  _vm.collapse
+                    ? _c("div", [_vm._v("A")])
+                    : _c("div", [_vm._v("Admin")])
+                ]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -14983,7 +15057,11 @@ var render = function() {
             ? _c(
                 "el-menu-item",
                 { staticClass: "right", attrs: { index: "/create-book" } },
-                [_c("i", { staticClass: "el-icon-plus" })]
+                [
+                  _vm.collapse
+                    ? _c("div", [_vm._v("+")])
+                    : _c("div", [_c("i", { staticClass: "el-icon-plus" })])
+                ]
               )
             : _vm._e()
         ],

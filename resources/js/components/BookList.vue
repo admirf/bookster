@@ -66,10 +66,6 @@
                 if (this.query.length > 0) {
                     let endpoint = `/api/search?q=${this.query}${this.filters}&page=${this.currPage}`
 
-                    if (this.query === '$index') {
-                        endpoint = `/api/books?page=${this.currPage}`
-                    }
-
                     this.loading = true
                     let self = this
 

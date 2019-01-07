@@ -32,7 +32,7 @@
         methods: {
             setQuery () {
                 if (this.input.length === 0) {
-                    this.$store.commit('setQuery', '$index')
+                    this.$store.commit('setQuery', '*')
                 } else {
                     this.$store.commit('setQuery', this.input)
                 }

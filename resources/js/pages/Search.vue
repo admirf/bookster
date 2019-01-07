@@ -21,6 +21,10 @@
         },
         methods: {
             search() {
+                if (this.query.length === 0) {
+                    this.query = '*'
+                }
+
                 this.$store.commit('setQuery', this.query)
                 this.$router.push('results')
             }
