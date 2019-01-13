@@ -11,9 +11,11 @@
         </div>
 
         <div class="category align-vertical" v-for="(category, index) in categories" :key="category.id" :class="color(index)">
-            <div><strong>ID:</strong> <em>{{ category.id }}</em></div>
-            <div>Name: {{ category.name }}</div>
-            <div>
+            <div class="category-left">
+                <div><strong>ID:</strong> <em>{{ category.id }}</em></div>
+                <div>Name: {{ category.name }}</div>
+            </div>
+            <div class="category-right">
                 <el-button type="danger" @click="deleteCategory(category.id, index)">Delete</el-button>
             </div>
         </div>
@@ -101,10 +103,26 @@
     .category {
         display: flex;
         flex-wrap: nowrap;
-        justify-content: space-evenly;
+        justify-content: space-between;
         padding-bottom: 9px;
         padding-top: 9px;
         border-top: #011e4f 1px solid;
+    }
+
+    .category-left {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+    }
+
+    .category-right {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        padding-right: 9px;
     }
 
     .background {

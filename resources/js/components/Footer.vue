@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <a>Credits Admir Ferhatovic</a>
+        <a>Copyright Admir Ferhatovic &copy;</a>
     </div>
 </template>
 

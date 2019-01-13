@@ -67,7 +67,7 @@
                 admin: 'getAdmin'
             }),
             collapse () {
-                return this.width < 500
+                return this.width < 560
             }
         },
         mounted() {

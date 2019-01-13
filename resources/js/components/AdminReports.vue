@@ -5,9 +5,11 @@
         </div>
 
         <div class="report align-vertical" v-for="(report, index) in reports" :key="report.id" :class="color(index)">
-            <div><strong>ID:</strong> <em>{{ report.id }}</em></div>
-            <div>Reporter: {{ report.user.name }}</div>
-            <div>
+            <div class="report-left">
+                <div><strong>ID:</strong> <em>{{ report.id }}</em></div>
+                <div>{{ report.user.name }}</div>
+            </div>
+            <div class="report-right">
                 <el-button type="primary" @click="goToReport(report.id)"><i class="el-icon-view"></i></el-button>
                 <el-button type="danger" @click="deleteReport(report.id, index)">Delete</el-button>
             </div>
@@ -79,10 +81,26 @@
     .report {
         display: flex;
         flex-wrap: nowrap;
-        justify-content: space-evenly;
+        justify-content: space-between;
         padding-bottom: 9px;
         padding-top: 9px;
         border-top: #011e4f 1px solid;
+    }
+
+    .report-left {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+    }
+
+    .report-right {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        padding-right: 9px;
     }
 
     .background {

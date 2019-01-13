@@ -4,9 +4,11 @@
             <h3>Users</h3>
         </div>
         <div class="user align-vertical" v-for="(user, index) in users" :key="user.id" :class="color(index)">
-            <div><strong>ID:</strong> <em>{{ user.id }}</em></div>
-            <div>{{ user.email }}</div>
-            <div>
+            <div class="user-left">
+                <div><strong>ID:</strong> <em>{{ user.id }}</em></div>
+                <div>{{ user.email }}</div>
+            </div>
+            <div class="user-right">
                 <el-button type="primary" @click="goToUser(user.id)"><i class="el-icon-view"></i></el-button>
                 <el-button type="danger" @click="deleteUser(user.id, index)">Ban</el-button>
             </div>
@@ -74,10 +76,26 @@
     .user {
         display: flex;
         flex-wrap: nowrap;
-        justify-content: space-evenly;
+        justify-content: space-between;
         padding-bottom: 9px;
         padding-top: 9px;
         border-top: #011e4f 1px solid;
+    }
+
+    .user-left {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+    }
+
+    .user-right {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        padding-right: 9px;
     }
 
     .background {

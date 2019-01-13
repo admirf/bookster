@@ -4,10 +4,12 @@
             <h3>Your Books</h3>
         </div>
         <div class="book align-vertical" v-for="(book, index) in books" :key="book.id" :class="color(index)">
-            <div><strong>ID:</strong> <em>{{ book.id }}</em></div>
-            <div>Price: {{ book.price }}</div>
-            <div>Title: {{ book.title }}</div>
-            <div>
+            <div class="book-left">
+                <div><strong>ID:</strong> <em>{{ book.id }}</em></div>
+                <div>Price: {{ book.price }}</div>
+                <div>Title: {{ book.title }}</div>
+            </div>
+            <div class="book-right">
                 <el-button type="primary" @click="goToBook(book.id)"><i class="el-icon-view"></i></el-button>
                 <el-button type="success" @click="goToEditBook(book.id)">Edit</el-button>
                 <el-button type="danger" @click="deleteBook(book.id, index)">Delete</el-button>
@@ -88,10 +90,26 @@
     .book {
         display: flex;
         flex-wrap: nowrap;
-        justify-content: space-evenly;
+        justify-content: space-between;
         padding-bottom: 9px;
         padding-top: 9px;
         border-top: #011e4f 1px solid;
+    }
+
+    .book-left {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+    }
+
+    .book-right {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        padding-right: 9px;
     }
 
     .background {

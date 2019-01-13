@@ -4,13 +4,19 @@
             <h3>Your Transactions</h3>
         </div>
         <div class="transaction align-vertical" v-for="(transaction, index) in transactions" :key="transaction.id" :class="color(index)">
-            <div><strong>ID:</strong> <em>{{ transaction.id }}</em></div>
-            <div>Credits: {{ transaction.credits }}</div>
-            <div>Completed: <span :class="colorBoolean(transaction.completed)">{{ transaction.completed }}</span></div>
-            <div>
+            <div class="transaction-left">
+                <div><strong>ID:</strong> <em>{{ transaction.id }}</em></div>
+                <div>Credits: {{ transaction.credits }}</div>
+                <div>Completed: <span :class="colorBoolean(transaction.completed)">{{ transaction.completed }}</span></div>
+            </div>
+            <div class="transaction-right">
+
                 <el-button type="primary" @click="goToTransaction(transaction.id)"><i class="el-icon-view"></i></el-button>
                 <el-button type="success" @click="complete(transaction.id, index)" :disabled="transaction.completed">Complete</el-button>
+
             </div>
+
+
         </div>
     </div>
 </template>
@@ -93,10 +99,26 @@
     .transaction {
         display: flex;
         flex-wrap: nowrap;
-        justify-content: space-evenly;
+        justify-content: space-between;
         padding-bottom: 9px;
         padding-top: 9px;
         border-top: #011e4f 1px solid;
+    }
+
+    .transaction-left {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+    }
+
+    .transaction-right {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        padding-right: 9px;
     }
 
     .background {

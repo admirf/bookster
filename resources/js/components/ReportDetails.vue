@@ -15,7 +15,7 @@
             <div style="text-align: center">{{ report.content }}</div>
         </div>
         <div class="row">
-            <div>Posted by:</div>
+            <div>Reported by:</div>
             <router-link :to="`/user/${report.user.id}`">{{ report.user.name }}</router-link>
         </div>
         <div class="row">
